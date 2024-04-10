@@ -13,6 +13,11 @@ public class ProviderApplication {
         SpringApplication.run(ProviderApplication.class, args);
     }
 
+    /**
+     * Method to send a message to the consumer
+     * @param kafkaTemplate autowired parameter thaks to bean flag
+     * @return message sent
+     */
     @Bean
     CommandLineRunner init(KafkaTemplate<String, String> kafkaTemplate) {
         return args -> {

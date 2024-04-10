@@ -10,6 +10,10 @@ public class KafkaConsumerListener {
 
     private Logger LOGGER= LoggerFactory.getLogger(KafkaConsumerListener.class);
 
+    /**
+     * Method receiving message from the provider
+     * @param message from the provider
+     */
     @KafkaListener(topics = {"unProgramadorNace-topic"}, groupId = "my-groupd-id")
     public void listener(String message){
         LOGGER.info("Mensaje recibido: "+message);

@@ -12,6 +12,11 @@ import java.util.Map;
 @Configuration
 public class KafkaTopicConfig {
 
+    /**
+     * Method to generate rules for create a new topic
+     * and its configurations
+     * @return new topic created
+     */
     @Bean
     public NewTopic generateTopic() {
 
