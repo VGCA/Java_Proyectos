@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uni - Thymeleaf</title>
+</head>
+<body>
+<a th:href="@{/add}">Crear persona</a><br/>
+<table border="solid">
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Telefono</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+    </tr>
+    <tr th:each="persona:${listPersonas}">
+        <td th:text="${persona.nombre}"></td>
+        <td th:text="${persona.apellido}"></td>
+        <td th:text="${persona.email}"></td>
+        <td th:text="${persona.telefono}"></td>
+        <td><a th:href="@{/edit/} + ${persona.id}" th:text="Editar"></a></td>
+        <td><a th:href="@{/delete/} + ${persona.id}" th:text="Borrar"></a></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,15 @@
+server:
+ port: 9000
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: futbol_saludo_inicial
+        uri: http://localhost:8080/
+        predicates:
+        - Path=/saludo
+      - id: futbol_ver_jugadores
+        uri: http://localhost:8080/
+        predicates:
+        - Path=/lista_jugadores
+

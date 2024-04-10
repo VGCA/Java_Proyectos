@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir personas</title>
+</head>
+<body>
+<form th:action="@{/guardar}" method="post" th:object="${persona}">
+    Nombre: <input type="text" name="nombre" th:field="*{nombre}">
+    Apellido: <input type="text" name="apellido" th:field="*{apellido}">
+    Email: <input type="text" name="email" th:field="*{email}">
+    Telefono: <input type="text" name="telefono" th:field="*{telefono}">
+    <br/>
+    <input type="submit" name="guardar" value="Guardar">
+</form>
+<a th:href="@{/}">Volver atrás</a>
+</body>
+</html>

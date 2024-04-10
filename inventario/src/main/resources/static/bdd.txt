@@ -1,0 +1,2 @@
+create database inventario;
+use inventario;

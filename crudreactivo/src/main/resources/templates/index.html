@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ver usuarios jugando</title>
+</head>
+<body>
+        <h2>Personas</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Nombre</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.nombre}"></td>
+            </tr>
+            </tbody>
+        </table>
+    <p><a href="/add-user">Agregar un nuevo jugador</a></p>
+</body>
+</html>

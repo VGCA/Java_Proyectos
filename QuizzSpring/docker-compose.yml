@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: # Customize username if needed
+      POSTGRES_PASSWORD: # Replace with a robust password
+      POSTGRES_DB: # Customize database name if needed
+    ports:
+      - "5432:5432"  # Map container port 5432 to host port 5432 (optional)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persistent storage for data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: # Customize email if needed
+      PGADMIN_DEFAULT_PASSWORD: # Replace with a robust password
+    ports:
+      - "5050:80"  # Map container port 80 to host port 5050 (optional)
+
+volumes:
+  postgres_data:  # Optional persistent volume for data

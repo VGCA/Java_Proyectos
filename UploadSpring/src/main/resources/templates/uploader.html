@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Ejemplo de subir archivos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" 
+          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+  </head>
+
+  <body>
+  
+    <input type="file" name="fileupload" id="fileupload">
+    <button id="uploadFile" onclick="subirFichero()">Subir</button>
+
+    <script>
+        async function subirFichero(){
+            let formData=new FormData();
+            formData.append("file",fileupload.files[0]);
+            let response=await fetch('/subir',{
+                method:"POST",
+                body:formData
+            });
+
+            if (response.status==200){
+                alert("Archivo enviado con éxito");
+            }
+        }
+    </script>
+  
+  </body>
+
+</html>

@@ -1,0 +1,2 @@
+Archivo de errores
+Mostrando los errores del fichero

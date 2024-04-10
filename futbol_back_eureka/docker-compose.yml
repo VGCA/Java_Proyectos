@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  api_service:
+    build: .
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - mipuente
+    depends_on:
+      - mysql_db
+    command: sh -c './wait-for mysql_db:3306 -- npm start'
+  mysql_db:
+    hostname: "mysql_container"
+    image: "mysql:8.0.28"
+    restart: always
+    ports:
+      - 3307:3306
+    networks:
+      - mipuente
+    environment:
+      MYSQL_DATABASE: futbol
+      MYSQL_USER: cursojava
+      MYSQL_PASSWORD: cursojava
+      MYSQL_ROOT_PASSWORD: cursojava
+networks:
+  mipuente:
+    name: mibridge
+    # Usar una network propia
+    driver: mibridge
