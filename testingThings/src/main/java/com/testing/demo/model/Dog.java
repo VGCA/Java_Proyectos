@@ -1,4 +1,4 @@
-package com.testing.demo;
+package com.testing.demo.model;
 
 public class Dog {
 
