@@ -7,6 +7,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
 @ExtendWith(MockitoExtension.class)
 class SimpleCalculatorTest {
@@ -29,5 +33,13 @@ class SimpleCalculatorTest {
     void quit() {
         //when(simpleCalculator.quit(25, 5)).thenReturn(20);
         assertEquals(20, simpleCalculator.quit(25, 5));
+    }
+
+    @Test
+    void testingMono(){
+        Mono<String> greeting = Mono.just("Hola Mundo");
+        StepVerifier.create(greeting)
+                .expectNext("Hola Mundo")
+                .verifyComplete();
     }
 }

@@ -1,5 +1,8 @@
 package com.testing.demo;
 
+import com.testing.demo.model.Caja;
+import com.testing.demo.model.CajaExtiende;
+import com.testing.demo.model.Dog;
 import com.testing.demo.model.Persona;
 
 import java.io.BufferedReader;
@@ -30,6 +33,17 @@ public class Main {
         System.out.println("Números pares " + collectPares);
         System.out.println("Unión de valores = " + famousNames.stream().reduce((a, b) -> a + b).get());
         parseCsvFile();
+
+        Caja<String, Integer> newCaja = new Caja<>("Hola", 2);
+        System.out.println("Los datos son " + newCaja.getDatos());
+        System.out.println("Las operaciones son " + newCaja.getOperaciones());
+        newCaja.setDatos("Adiós");
+        System.out.println("Los nuevos datos son " + newCaja.getDatos());
+
+        CajaExtiende cajaExtiende = new CajaExtiende<>();
+        cajaExtiende.setDatos(new Dog(1, "Guau", "Tobby"));
+        System.out.println("La cantidad de patas de la clase" +
+                "con extends Dog es " + cajaExtiende.howManyLegs());
     }
 
     /**

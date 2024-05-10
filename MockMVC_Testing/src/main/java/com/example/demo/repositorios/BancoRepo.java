@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BancoRepo extends JpaRepository<Banco,Long> {
+
 }
