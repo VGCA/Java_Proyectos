@@ -4,17 +4,16 @@ import com.example.demo.entidades.Banco;
 import com.example.demo.entidades.Cuenta;
 import com.example.demo.repositorios.BancoRepo;
 import com.example.demo.repositorios.CuentaRepo;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class CuentaServicioImp implements CuentaServicio{
+public class CuentaServicioImp implements CuentaServicio {
 
     private CuentaRepo cuentaRepo;
     private BancoRepo bancoRepo;
