@@ -10,9 +10,6 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class PersonaServicio{
 
-    private ArrayList<Persona> listaPersonas;
-
-    private Persona persona;
     private PersonaRepository personaRepository;
 
     public Persona addPersona(Persona persona){
