@@ -20,6 +20,11 @@ public class CuentaController {
     @Autowired
     private CuentaServicio cuentaServicio;
 
+    @RequestMapping("/")
+    public @ResponseBody String greeting() {
+        return "Hello, World";
+    }
+
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public Cuenta verDetalles(@PathVariable Long id) {
