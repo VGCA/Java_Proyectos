@@ -1,0 +1,97 @@
+openapi: "3.0.0"
+info:
+  version: "1.0.0"
+  title: "Car API"
+  description: "API for managing cars."
+
+paths:
+  /cars:
+    get:
+      summary: "List all cars"
+      operationId: "listCars"
+      responses:
+        '200':
+          description: "A list of cars."
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Car"
+
+    post:
+      summary: "Create a new car"
+      operationId: "createCar"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Car"
+      responses:
+        '201':
+          description: "Car created successfully."
+
+  /cars/{id}:
+    get:
+      summary: "Get a car by ID"
+      operationId: "getCar"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "A single car."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Car"
+
+    put:
+      summary: "Update a car by ID"
+      operationId: "updateCar"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Car"
+      responses:
+        '200':
+          description: "Car updated successfully."
+
+    delete:
+      summary: "Delete a car by ID"
+      operationId: "deleteCar"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "Car deleted successfully."
+
+components:
+  schemas:
+    Car:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        make:
+          type: "string"
+        model:
+          type: "string"
+        year:
+          type: "integer"

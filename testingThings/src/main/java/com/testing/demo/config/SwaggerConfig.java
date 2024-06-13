@@ -27,9 +27,9 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("Api Rest sobre objetos")
+                .title("Api Rest sobre coches")
                 .version("1.0.0")
-                .description("Api para el control de objetos")
+                .description("Api para el control de coches")
                 .build();
     }
 }
