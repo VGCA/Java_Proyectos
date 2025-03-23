@@ -2,15 +2,10 @@ package com.java.playground.domain.model;
 
 import lombok.Data;
 
-import java.util.UUID;
-
 @Data
-public abstract class Card {
-    private UUID id;
-    private String name;
-    private boolean isExhausted;
+public class Card {
 
-    public abstract void applyEffect(Player player, List<Enemy> enemies);
-
-
+    private final String name;
+    private final com.java.playground.domain.model.CardType type;
+    private final int value;
 }
