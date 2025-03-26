@@ -1,26 +1,17 @@
 package com.java.playground;
 
-import com.java.playground.domain.services.GameEngine;
-import com.java.playground.infrastructure.adapters.JavaFXGameLoop;
-import com.java.playground.infrastructure.adapters.JavaFXGameUI;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.java.playground.application.GameEngine;
+import com.java.playground.infrastructure.ConsoleAdapter;
+import com.java.playground.model.in.GameInput;
+import com.java.playground.model.out.GameOutput;
 
-@SpringBootApplication
-public class JavaPlaygroundApplication extends Application {
+public class JavaPlaygroundApplication {
 
-    private GameEngine gameEngine;
-    private JavaFXGameUI gameUI;
-
-    @Override
-    public void start(Stage stage) {
-        gameEngine = new GameEngine();
-        gameUI = new JavaFXGameUI();
-
-        Scene scene = new Scene(gameUI.getMainView(), 800, 600);
-        stage.setScene(scene);
-        stage.show();
-
-        new JavaFXGameLoop(gameEngine, gameUI).start();
+    public static void main(String[] args) {
+        GameInput input = new ConsoleAdapter();
+        GameOutput output = new ConsoleAdapter();
+        GameEngine engine = new GameEngine(input, output);
+        engine.startBattle();
     }
 }
 
