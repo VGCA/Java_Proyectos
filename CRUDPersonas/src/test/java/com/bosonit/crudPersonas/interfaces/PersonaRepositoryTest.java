@@ -1,12 +1,12 @@
-package com.bosonit.CRUDPersonas.interfaces;
+package com.bosonit.crudpersonas.interfaces;
 
-import com.bosonit.CRUDPersonas.modelo.Persona;
-import com.bosonit.CRUDPersonas.servicios.PersonaServicio;
+import com.bosonit.crudpersonas.servicios.PersonaServicio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import com.bosonit.crudpersonas.modelo.Persona;
 
 import java.util.Collections;
 
@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class PersonaRepositoryTest {
+class PersonaRepositoryTest {
     @Mock
     private PersonaServicio personaServicio;
     @Mock

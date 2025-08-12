@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.bosonit</groupId>
-    <artifactId>CRUDPersonas</artifactId>
+    <artifactId>crudpersonas</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>CRUDPersonas</name>
+    <name>crudpersonas</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>21</java.version>

@@ -1,9 +1,7 @@
-package com.bosonit.CRUDPersonas.controlador;
+package com.bosonit.crudpersonas.controller;
 
-import com.bosonit.CRUDPersonas.modelo.Persona;
-import com.bosonit.CRUDPersonas.servicios.PersonaServicio;
+import com.bosonit.crudpersonas.servicios.PersonaServicio;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("persona")

@@ -1,6 +1,6 @@
-package com.bosonit.CRUDPersonas.interfaces;
+package com.bosonit.crudpersonas.interfaces;
 
-import com.bosonit.CRUDPersonas.modelo.Persona;
+import com.bosonit.crudpersonas.modelo.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

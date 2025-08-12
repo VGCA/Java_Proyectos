@@ -1,11 +1,10 @@
-package com.bosonit.CRUDPersonas.servicios;
+package com.bosonit.crudpersonas.servicios;
 
-import com.bosonit.CRUDPersonas.interfaces.PersonaRepository;
-import com.bosonit.CRUDPersonas.modelo.Persona;
+import com.bosonit.crudpersonas.interfaces.PersonaRepository;
+import com.bosonit.crudpersonas.modelo.Persona;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 @Service
 @AllArgsConstructor
 public class PersonaServicio{

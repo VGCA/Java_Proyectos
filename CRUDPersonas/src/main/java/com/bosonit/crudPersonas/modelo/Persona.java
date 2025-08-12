@@ -1,4 +1,4 @@
-package com.bosonit.CRUDPersonas.modelo;
+package com.bosonit.crudpersonas.modelo;
 
 
 import jakarta.persistence.Entity;
@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
-@Data @AllArgsConstructor
+@Data
 public class Persona {
     @Id
     @GeneratedValue
@@ -16,4 +16,11 @@ public class Persona {
     private String nombre;
     private Integer edad;
     private String poblacion;
+
+    public Persona(Integer id, String nombre, Integer edad, String poblacion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.edad = edad;
+        this.poblacion = poblacion;
+    }
 }
