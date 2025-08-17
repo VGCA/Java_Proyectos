@@ -1,5 +1,6 @@
 package com.bosonit.jwtsecurity.modelo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -11,7 +12,7 @@ public class JwtRequest implements Serializable {
     private String username;
     private String password;
 
-    //need default constructor for JSON Parsing
+    @Autowired
     public JwtRequest()
     {
 

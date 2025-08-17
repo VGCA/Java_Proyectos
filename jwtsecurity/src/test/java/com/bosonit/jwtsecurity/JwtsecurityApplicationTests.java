@@ -8,6 +8,7 @@ class JwtsecurityApplicationTests {
 
 	@Test
 	void contextLoads() {
+        System.out.println("contextLoads is running");
 	}
 
 }
