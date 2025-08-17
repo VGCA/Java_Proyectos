@@ -9,16 +9,25 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 @Slf4j
 public class ControllerUniversity {
+
+    private final PersonaServicio personaServicio;
+    Logger log = Logger.getLogger(ControllerUniversity.class.getName());
+
+
     @Autowired
-    private PersonaServicio personaServicio;
+    public ControllerUniversity(PersonaServicio personaServicio) {
+        this.personaServicio = personaServicio;
+    }
 
     @GetMapping("/")
     public String index(Model model) {
@@ -28,7 +37,6 @@ public class ControllerUniversity {
         return "index";
     }
 
-    // ADD NEW PERSON TO DATABASE
 
     @GetMapping("/add")
     public String add(Persona persona) {
@@ -44,19 +52,17 @@ public class ControllerUniversity {
         return "redirect:/";
     }
 
-    // EDIT A PERSON FROM THE DATABASE
 
     @GetMapping("/edit/{id}")
-    public String editar(Persona persona, Model model) {
-        Persona personaFind = personaServicio.buscar_persona(persona);
+    public String editar(@PathVariable("id") Integer id, Persona persona, Model model) {
+        Persona personaFind = personaServicio.buscar_persona_por_id(persona);
         model.addAttribute("personaFind", personaFind);
         return "modificar";
     }
 
-    // DELETE A PERSON FROM THE DATABASE
 
     @GetMapping("/delete/{id}")
-    public String borrar(Persona persona) {
+    public String borrar(@PathVariable("id") Integer id, Persona persona) {
         personaServicio.eliminar_persona(persona);
         return "redirect:/";
     }

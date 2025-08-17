@@ -10,8 +10,14 @@ import java.util.List;
 
 @Service
 public class PersonaServicioImpl implements PersonaServicio{
+
+    private final PersonaRepository personaRepository;
+
     @Autowired
-    private PersonaRepository personaRepository;
+    public PersonaServicioImpl(PersonaRepository personaRepository) {
+        this.personaRepository = personaRepository;
+    }
+
     @Override
     @Transactional(readOnly = true)
     public List<Persona> ver_personas() {
@@ -31,8 +37,7 @@ public class PersonaServicioImpl implements PersonaServicio{
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Persona buscar_persona(Persona persona) {
+    public Persona buscar_persona_por_id(Persona persona) {
         return personaRepository.findById(persona.getId()).orElse(null);
     }
 }
