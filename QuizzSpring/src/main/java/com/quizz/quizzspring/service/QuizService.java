@@ -1,11 +1,11 @@
-package com.quizz.QuizzSpring.service;
+package com.quizz.quizzspring.service;
 
-import com.quizz.QuizzSpring.dao.QuestionDao;
-import com.quizz.QuizzSpring.dao.QuizDao;
-import com.quizz.QuizzSpring.model.Question;
-import com.quizz.QuizzSpring.model.QuestionWrapper;
-import com.quizz.QuizzSpring.model.Quiz;
-import com.quizz.QuizzSpring.model.Response;
+import com.quizz.quizzspring.dao.QuestionDao;
+import com.quizz.quizzspring.dao.QuizDao;
+import com.quizz.quizzspring.model.Question;
+import com.quizz.quizzspring.model.QuestionWrapper;
+import com.quizz.quizzspring.model.Quiz;
+import com.quizz.quizzspring.model.Response;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +42,7 @@ public class QuizService {
         quiz.ifPresent(value -> questionsFromDB = value.getQuestions());
         List<QuestionWrapper> questionsForUser = new ArrayList<>();
         for(Question q : questionsFromDB){
-            QuestionWrapper qw = new QuestionWrapper(q.getId(), q.getQuestionTitle(), q.getOption1(), q.getOption2(), q.getOption3(), q.getOption4());
+            QuestionWrapper qw = new QuestionWrapper(q.getId(), q.getQuestionTitle(), q.getOption1(), q.getOption2());
             questionsForUser.add(qw);
         }
 
@@ -51,16 +51,23 @@ public class QuizService {
     }
 
     public ResponseEntity<Integer> calculateResult(Integer id, List<Response> responses) {
-        Quiz quiz = quizDao.findById(id).get();
+        Optional<Quiz> optionalQuiz = quizDao.findById(id);
+        if (!optionalQuiz.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Quiz quiz = optionalQuiz.get();
         List<Question> questions = quiz.getQuestions();
         int right = 0;
-        int i = 0;
-        for(Response response : responses){
-            if(response.getResponse().equals(questions.get(i).getRightAnswer()))
-                right++;
 
-            i++;
+        for (int i = 0; i < responses.size() && i < questions.size(); i++) {
+            Response response = responses.get(i);
+            if (response.getResponseMessage().equals(questions.get(i).getRightAnswer())) {
+                right++;
+            }
         }
+
         return new ResponseEntity<>(right, HttpStatus.OK);
     }
+
 }

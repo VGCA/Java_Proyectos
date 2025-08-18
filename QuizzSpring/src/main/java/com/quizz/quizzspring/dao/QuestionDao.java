@@ -1,10 +1,10 @@
-package com.quizz.QuizzSpring.dao;
+package com.quizz.quizzspring.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.quizz.QuizzSpring.model.Question;
+import com.quizz.quizzspring.model.Question;
 
 import java.util.List;
 

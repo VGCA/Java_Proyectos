@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.quizz</groupId>
-	<artifactId>QuizzSpring</artifactId>
+	<artifactId>quizzspring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>QuizzSpring</name>
+	<name>quizzspring</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>22</java.version>

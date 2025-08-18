@@ -1,4 +1,4 @@
-package com.bosonit.Kafka;
+package com.bosonit.kafka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

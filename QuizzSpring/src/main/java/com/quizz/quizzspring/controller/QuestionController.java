@@ -1,12 +1,11 @@
-package com.quizz.QuizzSpring.controller;
+package com.quizz.quizzspring.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.quizz.QuizzSpring.model.Question;
-import com.quizz.QuizzSpring.service.QuestionService;
+import com.quizz.quizzspring.model.Question;
+import com.quizz.quizzspring.service.QuestionService;
 
 import java.util.List;
 

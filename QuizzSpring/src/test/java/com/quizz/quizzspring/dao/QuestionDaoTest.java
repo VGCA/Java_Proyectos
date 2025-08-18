@@ -1,6 +1,6 @@
-package com.quizz.QuizzSpring.dao;
+package com.quizz.quizzspring.dao;
 
-import com.quizz.QuizzSpring.model.Question;
+import com.quizz.quizzspring.model.Question;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,14 +8,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class QuestionDaoTest {
+class QuestionDaoTest {
 
     @Mock
     private QuestionDao questionDao;
@@ -35,7 +34,7 @@ public class QuestionDaoTest {
     @Test
     void findOneFieldTest() {
         Question question = new Question(1, "questionTitle", "option1",
-                "option2", "option3", "option4", "rightAnswer",
+                "option2",  "rightAnswer",
                 "difficultylevel", "category");
         when(questionDao.save(question)).thenReturn(question);
         questionDao.save(question);

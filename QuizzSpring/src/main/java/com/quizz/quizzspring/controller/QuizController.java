@@ -1,12 +1,12 @@
-package com.quizz.QuizzSpring.controller;
+package com.quizz.quizzspring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.quizz.QuizzSpring.model.QuestionWrapper;
-import com.quizz.QuizzSpring.model.Response;
-import com.quizz.QuizzSpring.service.QuizService;
+import com.quizz.quizzspring.model.QuestionWrapper;
+import com.quizz.quizzspring.model.Response;
+import com.quizz.quizzspring.service.QuizService;
 
 import java.util.List;
 
@@ -15,7 +15,11 @@ import java.util.List;
 public class QuizController {
 
     @Autowired
-    QuizService quizService;
+    public QuizController(QuizService quizService) {
+        this.quizService = quizService;
+    }
+
+    private final QuizService quizService;
 
     @PostMapping("create")
     public ResponseEntity<String> createQuiz(@RequestParam String category, @RequestParam int numQ, @RequestParam String title){
