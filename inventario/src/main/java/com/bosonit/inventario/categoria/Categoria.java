@@ -23,6 +23,7 @@ public class Categoria {
     @ManyToOne
     @JoinColumn(name = "marca_id")
     private Marca marca;
+    private String descripcion;
 
     public Categoria(String nombre) {
         this.nombre = nombre;
@@ -52,6 +53,14 @@ public class Categoria {
 
     public int getId() {
         return id;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public void setId(int id) {

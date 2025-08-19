@@ -15,13 +15,18 @@ import com.bosonit.inventario.repositorio.CategoriaRepositorio;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
-public class CategoriaRepoTest {
+class CategoriaRepoTest {
+
+
+    private final CategoriaRepositorio categoriaRepo;
 
     @Autowired
-    private CategoriaRepositorio categoriaRepo;
+    public CategoriaRepoTest(CategoriaRepositorio categoriaRepo) {
+        this.categoriaRepo = categoriaRepo;
+    }
 
     @Test
-    public void testCrearCategoria() {
+    void testCrearCategoria() {
         Categoria nuevaCategoria = categoriaRepo.save(new Categoria("Electronicos"));
         assertTrue(nuevaCategoria.getId() > 0);
     }

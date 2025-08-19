@@ -22,6 +22,7 @@ public class Marca {
 
     @Column(length = 45, nullable = false, unique = true)
     private String nombre;
+    private String descripcion;
 
     @OneToMany
     @JoinColumn(name = "marca_id")
@@ -43,6 +44,14 @@ public class Marca {
     }
 
     public Marca() {
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public int getId() {

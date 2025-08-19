@@ -1,11 +1,14 @@
 package com.bosonit.inventario.controlador;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.bosonit.inventario.dtos.MarcaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -17,11 +20,14 @@ import com.bosonit.inventario.repositorio.MarcaRepositorio;
 @Controller
 public class MarcaController {
 
-    @Autowired
-    private MarcaRepositorio marcaRepo;
+    private final MarcaRepositorio marcaRepo;
+    private final CategoriaRepositorio categoriaRepo;
 
     @Autowired
-    private CategoriaRepositorio categoriaRepo;
+    public MarcaController(MarcaRepositorio marcaRepo, CategoriaRepositorio categoriaRepo) {
+        this.marcaRepo = marcaRepo;
+        this.categoriaRepo = categoriaRepo;
+    }
 
     @GetMapping("marcas/nueva")
     public String mostrarFormularioCrearMarca(Model modelo) {
@@ -34,10 +40,15 @@ public class MarcaController {
     }
 
     @PostMapping("marcas/guardar")
-    public String guardarMarca(Marca marca) {
+    public String guardarMarca(@ModelAttribute MarcaDTO marcaDTO) {
+        Marca marca = new Marca();
+        marca.setNombre(marcaDTO.getNombre());
+        marca.setDescripcion(marcaDTO.getDescripcion());
+
         marcaRepo.save(marca);
         return "redirect:/";
     }
+
 
     @GetMapping("marcas")
     public String listarMarcas(Model modelo) {
@@ -49,12 +60,17 @@ public class MarcaController {
     @GetMapping("marcas/editar/{id}")
     public String mostrarFormularioModificarMarca(@PathVariable("id") int id, Model modelo) {
         List<Categoria> listaCategorias = categoriaRepo.findAll();
-        Marca marca = marcaRepo.findById(id).get();
+        Optional<Marca> optionalMarca = marcaRepo.findById(id);
 
-        modelo.addAttribute("listaCategorias", listaCategorias);
-        modelo.addAttribute("marca", marca);
-
-        return "marca_formulario";
+        if (optionalMarca.isPresent()) {
+            Marca marca = optionalMarca.get();
+            modelo.addAttribute("listaCategorias", listaCategorias);
+            modelo.addAttribute("marca", marca);
+            return "marca_formulario";
+        } else {
+            return "redirect:/marcas?error=MarcaNoEncontrada";
+        }
     }
+
 
 }

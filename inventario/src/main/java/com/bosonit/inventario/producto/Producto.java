@@ -25,8 +25,6 @@ public class Producto {
     @Column(length = 128, nullable = false, unique = true)
     private String nombre;
 
-    private float precio;
-
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
@@ -34,21 +32,13 @@ public class Producto {
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
     private List<ProductoDetalles> detalles = new ArrayList<>();
 
-    public Producto(int id, String nombre, float precio, Categoria categoria) {
+    public Producto(int id, String nombre, float precio, String descripcion, Categoria categoria, List<ProductoDetalles> detalles) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
+        this.descripcion = descripcion;
         this.categoria = categoria;
-    }
-
-    public Producto(String nombre, float precio, Categoria categoria) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.categoria = categoria;
-    }
-
-    public Producto(String nombre) {
-        this.nombre = nombre;
+        this.detalles = detalles;
     }
 
     public Producto() {
@@ -70,12 +60,8 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public float getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(float precio) {
-        this.precio = precio;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Categoria getCategoria() {
@@ -88,14 +74,6 @@ public class Producto {
 
     public void aniadirDetalles(String nombre, String valor) {
         this.detalles.add(new ProductoDetalles(nombre, valor, this));
-    }
-
-    public List<ProductoDetalles> getDetalles() {
-        return detalles;
-    }
-
-    public void setDetalles(List<ProductoDetalles> detalles) {
-        this.detalles = detalles;
     }
 
     public void setDetalle(int id, String nombre, String valor){

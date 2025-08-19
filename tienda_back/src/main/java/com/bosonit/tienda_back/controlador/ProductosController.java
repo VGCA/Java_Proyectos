@@ -25,8 +25,14 @@ import com.bosonit.tienda_back.servicios.ProductosServicio;
 @RequestMapping("/api/productos")
 public class ProductosController {
 
-    private ProductosServicio productosServicio;
-    private CategoriasServicio categoriasServicio;
+    private final ProductosServicio productosServicio;
+    private final CategoriasServicio categoriasServicio;
+
+    @Autowired
+    public ProductosController(ProductosServicio productosServicio, CategoriasServicio categoriasServicio) {
+        this.productosServicio = productosServicio;
+        this.categoriasServicio = categoriasServicio;
+    }
 
     @GetMapping("/listar")
     public List<Producto> listarProductos() {

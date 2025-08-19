@@ -18,12 +18,20 @@ public class Producto {
     private int id;
 
     private String nombre;
-    private int precio;
+    private double precio;
     private String imagen;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "biblioteca_id")
     private Categoria categoria;
+
+    public Producto(int id, String nombre, double precio, String imagen, Categoria categoria) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.categoria = categoria;
+    }
 
     public int getId() {
         return id;
@@ -41,11 +49,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
