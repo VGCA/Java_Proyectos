@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class CountControllerTest {
+class CountControllerTest {
 
     @Mock
     private HotelSearchRepository repository;
@@ -25,7 +25,7 @@ public class CountControllerTest {
     private CountController countController;
 
     @Test
-    public void testGetSearchCount_Success() {
+    void testGetSearchCount_Success() {
 
         HotelSearch search = new HotelSearch("1234",
                 "1234aBc",
@@ -50,14 +50,14 @@ public class CountControllerTest {
     }
 
     @Test
-    public void testGetSearchCount_NotFound() {
+    void testGetSearchCount_NotFound() {
 
         when(repository.findBySearchId("9999")).thenReturn(Optional.empty());
 
 
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            countController.getSearchCount("9999");
-        });
+        Exception exception = assertThrows(RuntimeException.class, () ->
+            countController.getSearchCount("9999")
+        );
 
         assertEquals("Search not found", exception.getMessage());
 

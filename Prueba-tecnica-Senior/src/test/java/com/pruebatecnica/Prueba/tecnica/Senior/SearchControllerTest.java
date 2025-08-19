@@ -11,13 +11,17 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(SearchController.class)
-public class SearchControllerTest {
+class SearchControllerTest {
+
+    private final MockMvc mockMvc;
 
     @Autowired
-    private MockMvc mockMvc;
+    public SearchControllerTest(MockMvc mockMvc) {
+        this.mockMvc = mockMvc;
+    }
 
     @Test
-    public void testCreateSearch() throws Exception {
+    void testCreateSearch() throws Exception {
         String requestBody = """
         {
             "hotelId": "1234aBc",
