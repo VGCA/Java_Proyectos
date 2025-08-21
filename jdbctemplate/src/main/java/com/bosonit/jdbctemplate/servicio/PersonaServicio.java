@@ -2,6 +2,7 @@ package com.bosonit.jdbctemplate.servicio;
 
 import java.util.List;
 
+import com.bosonit.jdbctemplate.dtos.PersonaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,10 @@ import com.bosonit.jdbctemplate.modelo.Persona;
 @Service
 public class PersonaServicio {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+    @Autowired
+    public PersonaServicio(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -30,7 +31,7 @@ public class PersonaServicio {
         return jdbcTemplate.update(query);
     }
 
-    public int borrarPersona(Persona e) {
+    public int borrarPersona(PersonaDTO e) {
         String query = "delete from persona where id='" + e.getId() + "' ";
         return jdbcTemplate.update(query);
     }
@@ -46,4 +47,17 @@ public class PersonaServicio {
                         rs.getString("nombre"),
                         rs.getString("apellido")));
     }
+
+    public Persona findById(int id) {
+        String sql = "SELECT * FROM persona WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql,
+                (rs, rowNum) -> new Persona(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido")
+                ),
+                id
+        );
+    }
+
 }

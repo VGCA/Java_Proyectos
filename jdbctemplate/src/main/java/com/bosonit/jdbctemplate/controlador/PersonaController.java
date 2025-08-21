@@ -2,21 +2,22 @@ package com.bosonit.jdbctemplate.controlador;
 
 import java.util.List;
 
+import com.bosonit.jdbctemplate.dtos.PersonaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.bosonit.jdbctemplate.modelo.Persona;
 import com.bosonit.jdbctemplate.servicio.PersonaServicio;
 
 @RestController
 public class PersonaController {
-    
+
+    private final PersonaServicio personaServicio;
+
     @Autowired
-    private PersonaServicio personaServicio;
+    public PersonaController(PersonaServicio personaServicio) {
+        this.personaServicio = personaServicio;
+    }
 
     @GetMapping("/listar")
     public List<Persona> verPersonas(){
@@ -24,17 +25,23 @@ public class PersonaController {
     }
 
     @PostMapping("/guardar")
-    public int guardarPersona(@RequestParam Persona e){
-        return personaServicio.guardarPersona(e);
+    public int guardarPersona(@RequestBody PersonaDTO personaDTO){
+        Persona savePersona = new Persona();
+        savePersona.setNombre(personaDTO.getNombre());
+        savePersona.setApellido(personaDTO.getApellido());
+        return personaServicio.guardarPersona(savePersona);
     }
 
     @PostMapping("/update")
-    public int updatePersona(@RequestParam Persona e) {
-        return personaServicio.updatePersona(e);
+    public int updatePersona(@RequestBody PersonaDTO dto) {
+        Persona persona = personaServicio.findById(dto.getId());
+        persona.setNombre(dto.getNombre());
+        persona.setApellido(dto.getApellido());
+        return personaServicio.updatePersona(persona);
     }
 
     @DeleteMapping("/delete")
-    public int borrarPersona(@RequestParam Persona e) {
+    public int borrarPersona(@RequestParam PersonaDTO e) {
         return personaServicio.borrarPersona(e);
     }
 }
