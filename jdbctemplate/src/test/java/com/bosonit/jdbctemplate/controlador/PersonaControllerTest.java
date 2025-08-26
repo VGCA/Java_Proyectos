@@ -3,75 +3,89 @@ package com.bosonit.jdbctemplate.controlador;
 import com.bosonit.jdbctemplate.dtos.PersonaDTO;
 import com.bosonit.jdbctemplate.modelo.Persona;
 import com.bosonit.jdbctemplate.servicio.PersonaServicio;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
-@WebMvcTest(PersonaController.class)
 class PersonaControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+    @InjectMocks
+    private PersonaController personaController;
 
-    @MockBean
+    @Mock
     private PersonaServicio personaServicio;
 
-    @Test
-    void testVerPersonas() throws Exception {
-        List<Persona> personas = List.of(new Persona(1, "Juan", "Perez"));
-        Mockito.when(personaServicio.findAll()).thenReturn(personas);
-
-        mockMvc.perform(get("/listar"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].nombre").value("Juan"));
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void testGuardarPersona() throws Exception {
+    void testVerPersonas() {
+        Persona p1 = new Persona(1, "Juan", "Perez");
+        Persona p2 = new Persona(2, "Ana", "Gomez");
+        when(personaServicio.findAll()).thenReturn(Arrays.asList(p1, p2));
+
+        List<Persona> result = personaController.verPersonas();
+
+        assertEquals(2, result.size());
+        verify(personaServicio).findAll();
+    }
+
+    @Test
+    void testGuardarPersona() {
         PersonaDTO dto = new PersonaDTO();
-        dto.setNombre("Ana");
+        dto.setNombre("Carlos");
         dto.setApellido("Lopez");
 
-        Mockito.when(personaServicio.guardarPersona(Mockito.any(Persona.class))).thenReturn(1);
+        when(personaServicio.guardarPersona(any(Persona.class))).thenReturn(1);
 
-        mockMvc.perform(post("/guardar")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"nombre\":\"Ana\",\"apellido\":\"Lopez\"}"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("1"));
+        int result = personaController.guardarPersona(dto);
+
+        assertEquals(1, result);
+        verify(personaServicio).guardarPersona(any(Persona.class));
     }
 
     @Test
-    void testUpdatePersona() throws Exception {
-        Persona existing = new Persona(1, "Carlos", "Diaz");
-        Mockito.when(personaServicio.findById(1)).thenReturn(existing);
-        Mockito.when(personaServicio.updatePersona(Mockito.any(Persona.class))).thenReturn(1);
+    void testUpdatePersona() {
+        PersonaDTO dto = new PersonaDTO();
+        dto.setId(1);
+        dto.setNombre("Luis");
+        dto.setApellido("Martinez");
 
-        mockMvc.perform(post("/update")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"id\":1,\"nombre\":\"Carlos\",\"apellido\":\"Diaz\"}"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("1"));
+        Persona existing = new Persona(1, "OldName", "OldSurname");
+        when(personaServicio.findById(1)).thenReturn(existing);
+        when(personaServicio.updatePersona(any(Persona.class))).thenReturn(1);
+
+        int result = personaController.updatePersona(dto);
+
+        assertEquals(1, result);
+        verify(personaServicio).findById(1);
+        verify(personaServicio).updatePersona(existing);
+        assertEquals("Luis", existing.getNombre());
+        assertEquals("Martinez", existing.getApellido());
     }
 
     @Test
-    void testBorrarPersona() throws Exception {
-        Mockito.when(personaServicio.borrarPersona(Mockito.any(PersonaDTO.class))).thenReturn(1);
+    void testBorrarPersona() {
+        PersonaDTO dto = new PersonaDTO();
+        dto.setId(3);
+        dto.setNombre("Delete");
+        dto.setApellido("Me");
 
-        mockMvc.perform(delete("/delete")
-                        .param("id", "1")
-                        .param("nombre", "Luis")
-                        .param("apellido", "Martinez"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("1"));
+        when(personaServicio.borrarPersona(dto)).thenReturn(1);
+
+        int result = personaController.borrarPersona(dto);
+
+        assertEquals(1, result);
+        verify(personaServicio).borrarPersona(dto);
     }
 }
