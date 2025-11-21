@@ -1,0 +1,9 @@
+com\example\producingwebservice\PresidentRepository.class
+io\spring\guides\gs_producing_web_service\GetPresidentRequest.class
+io\spring\guides\gs_producing_web_service\GetPresidentResponse.class
+com\example\producingwebservice\WebServiceConfig.class
+io\spring\guides\gs_producing_web_service\ObjectFactory.class
+com\example\producingwebservice\PresidentEndpoint.class
+io\spring\guides\gs_producing_web_service\package-info.class
+com\example\producingwebservice\ProducingWebServiceApplication.class
+io\spring\guides\gs_producing_web_service\President.class

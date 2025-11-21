@@ -1,0 +1,29 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://spring.io/guides/gs-producing-web-service"
+           targetNamespace="http://spring.io/guides/gs-producing-web-service" elementFormDefault="qualified">
+
+    <xs:element name="getPresidentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Por ejemplo, pedir el nombre del presidente para obtener su presidente -->
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPresidentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Aquí devolvemos el tipo president que ya definiste -->
+                <xs:element name="president" type="tns:president"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="president">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="age" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
