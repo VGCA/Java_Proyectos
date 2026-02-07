@@ -9,7 +9,9 @@ import com.jwt.jwtprojecttuto.services.AuthenticationService;
 import com.jwt.jwtprojecttuto.services.JwtService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import utils.Constants;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -29,28 +31,26 @@ class AuthenticationControllerTest {
 
     @Test
     void testRegister_shouldReturnRegisteredUser() {
-        // Arrange
+
         RegisterUserDto registerUserDto = new RegisterUserDto();
         User mockUser = new User();
-        mockUser.setFullName("testuser");
+        mockUser.setFullName(Constants.FULLNAME);
 
         when(authenticationService.signup(registerUserDto)).thenReturn(mockUser);
 
-        // Act
         ResponseEntity<User> response = authenticationController.register(registerUserDto);
 
-        // Assert
-        assertEquals(200, response.getStatusCodeValue());
-        assertEquals("testuser", response.getBody().getFullName());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(Constants.FULLNAME, response.getBody().getFullName());
         verify(authenticationService, times(1)).signup(registerUserDto);
     }
 
     @Test
     void testAuthenticate_shouldReturnLoginResponseWithToken() {
-        // Arrange
+
         LoginUserDto loginUserDto = new LoginUserDto();
         User mockUser = new User();
-        mockUser.setFullName("testuser");
+        mockUser.setFullName(Constants.FULLNAME);
 
         String mockToken = "mock-jwt-token";
         long expirationTime = 3600000L;
@@ -59,11 +59,9 @@ class AuthenticationControllerTest {
         when(jwtService.generateToken(mockUser)).thenReturn(mockToken);
         when(jwtService.getExpirationTime()).thenReturn(expirationTime);
 
-        // Act
         ResponseEntity<LoginResponse> response = authenticationController.authenticate(loginUserDto);
 
-        // Assert
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(mockToken, response.getBody().getToken());
         assertEquals(expirationTime, response.getBody().getExpiresIn());
 

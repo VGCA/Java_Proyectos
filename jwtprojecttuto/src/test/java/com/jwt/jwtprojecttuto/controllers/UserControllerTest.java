@@ -5,10 +5,12 @@ import com.jwt.jwtprojecttuto.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import utils.Constants;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,9 +32,9 @@ class UserControllerTest {
 
     @Test
     void testAuthenticatedUser() {
-        // Arrange
+
         User mockUser = new User();
-        mockUser.setFullName("testuser"); // Ensure this matches the field you're asserting
+        mockUser.setFullName(Constants.FULLNAME);
 
         Authentication authentication = mock(Authentication.class);
         when(authentication.getPrincipal()).thenReturn(mockUser);
@@ -42,20 +44,18 @@ class UserControllerTest {
             when(mockContext.getAuthentication()).thenReturn(authentication);
             mockedContextHolder.when(SecurityContextHolder::getContext).thenReturn(mockContext);
 
-            // Act
             ResponseEntity<User> response = userController.authenticatedUser();
 
-            // Assert
-            assertEquals(200, response.getStatusCodeValue());
+            assertEquals(HttpStatus.OK, response.getStatusCode());
             assertNotNull(response.getBody());
-            assertEquals("testuser", response.getBody().getFullName());
+            assertEquals(Constants.FULLNAME, response.getBody().getFullName());
         }
     }
 
 
     @Test
     void testAllUsers() {
-        // Arrange
+
         User user1 = new User();
         user1.setFullName("user1");
 
@@ -65,11 +65,9 @@ class UserControllerTest {
         List<User> mockUsers = Arrays.asList(user1, user2);
         when(userService.allUsers()).thenReturn(mockUsers);
 
-        // Act
         ResponseEntity<List<User>> response = userController.allUsers();
 
-        // Assert
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(2, response.getBody().size());
         assertEquals("user1", response.getBody().get(0).getFullName());
     }
