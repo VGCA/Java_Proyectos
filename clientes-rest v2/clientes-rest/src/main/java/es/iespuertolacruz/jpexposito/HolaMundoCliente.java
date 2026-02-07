@@ -5,22 +5,23 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import java.util.logging.Logger;
 
 public class HolaMundoCliente {
 
     public static void main(String[] args) {
 
-        String url="http://localhost:8090";
-        String path="/saludo";
+        Logger logger = Logger.getLogger(HolaMundoCliente.class.getName());
+
+        String url="http://localhost:8090/saludo";
 
         Client client = ClientBuilder.newBuilder()
                 .register(JacksonFeature.class)
                 .build();
 
-        WebTarget target = client.target(url).path(path);
+        WebTarget target = client.target(url);
         String response = target.request().get().readEntity(String.class);
-        System.out.println("Respuesta :"+response);
-
+        logger.info(response);
     }
 }
 
