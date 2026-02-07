@@ -1,7 +1,6 @@
 package com.example.producingwebservice;
 
 import io.spring.guides.gs_producing_web_service.President;
-import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
@@ -10,9 +9,9 @@ import java.util.Map;
 
 @Repository
 public class PresidentRepository {
+
     private static final Map<String, President> listPresident = new HashMap<>();
 
-    @PostConstruct
     public void initData() {
         President spain = new President();
         spain.setName("Sanchez");
@@ -34,6 +33,7 @@ public class PresidentRepository {
     }
 
     public President findPresident(String name) {
+        initData();
         Assert.notNull(name, "The president's name must not be null");
         return listPresident.get(name);
     }
