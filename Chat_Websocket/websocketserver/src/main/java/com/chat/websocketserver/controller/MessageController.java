@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class MessageController {
+
     @MessageMapping("/envio")
     @SendTo("/tema/mensajes")
     public Mensaje envio(Mensaje mensaje) {
