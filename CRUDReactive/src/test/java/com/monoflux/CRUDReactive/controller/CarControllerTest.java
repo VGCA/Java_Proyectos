@@ -1,12 +1,13 @@
-package com.monoflux.CRUDReactive.controller;
+package com.monoflux.crudreactive.controller;
 
-import com.monoflux.CRUDReactive.model.Car;
-import com.monoflux.CRUDReactive.repository.CarRepository;
-import com.monoflux.CRUDReactive.service.CarService;
+import com.monoflux.crudreactive.model.Car;
+import com.monoflux.crudreactive.repository.CarRepository;
+import com.monoflux.crudreactive.service.CarService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
@@ -27,20 +28,26 @@ import static org.mockito.Mockito.times;
 @ExtendWith(SpringExtension.class)
 @WebFluxTest(controllers = CarController.class)
 @Import(CarService.class)
-public class CarControllerTest {
+@SpringBootConfiguration
+class CarControllerTest {
 
     @MockBean
-    CarRepository repository;
+    private CarRepository repository;
 
     @Autowired
     private WebTestClient webClient;
 
     @Test
     void testCreateEmployee() {
+
+        final String MARCA = "firstMarca";
+        final String COLOR = "firstColor";
+
+
         Car car = new Car();
         car.setId(1);
-        car.setMarca("firstMarca");
-        car.setColor("firstColor");
+        car.setMarca(MARCA);
+        car.setColor(COLOR);
 
 
         Mockito.when(repository.saveCar(car)).thenReturn(Mono.just(car));
@@ -48,7 +55,7 @@ public class CarControllerTest {
         webClient.post()
                 .uri("/save")
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromObject(car))
+                .body(BodyInserters.fromValue(car))
                 .exchange()
                 .expectStatus().isCreated();
 
@@ -62,7 +69,7 @@ public class CarControllerTest {
         car.setMarca("firstMarca");
         car.setColor("firstColor");
 
-        List<Car> list = new ArrayList<Car>();
+        List<Car> list = new ArrayList<>();
         list.add(car);
 
         Flux<Car> carFlux = Flux.fromIterable(list);

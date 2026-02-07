@@ -1,7 +1,7 @@
-package com.monoflux.CRUDReactive.service;
+package com.monoflux.crudreactive.service;
 
-import com.monoflux.CRUDReactive.model.Car;
-import com.monoflux.CRUDReactive.repository.CarRepository;
+import com.monoflux.crudreactive.model.Car;
+import com.monoflux.crudreactive.repository.CarRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

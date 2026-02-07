@@ -1,6 +1,6 @@
-package com.monoflux.CRUDReactive.repository;
+package com.monoflux.crudreactive.repository;
 
-import com.monoflux.CRUDReactive.model.Car;
+import com.monoflux.crudreactive.model.Car;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

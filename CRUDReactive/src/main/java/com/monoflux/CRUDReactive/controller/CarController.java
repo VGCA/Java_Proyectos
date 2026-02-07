@@ -1,7 +1,7 @@
-package com.monoflux.CRUDReactive.controller;
+package com.monoflux.crudreactive.controller;
 
-import com.monoflux.CRUDReactive.model.Car;
-import com.monoflux.CRUDReactive.service.CarService;
+import com.monoflux.crudreactive.model.Car;
+import com.monoflux.crudreactive.service.CarService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +14,11 @@ import reactor.core.publisher.Mono;
 @RestController
 public class CarController
 {
-    @Autowired
-    private CarService carService;
+    private final CarService carService;
+
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)

@@ -1,4 +1,4 @@
-package com.monoflux.CRUDReactive.model;
+package com.monoflux.crudreactive.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
