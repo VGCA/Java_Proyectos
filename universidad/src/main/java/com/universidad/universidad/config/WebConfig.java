@@ -10,10 +10,6 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import java.util.Locale;
 
-/**
- * THIS CLASS IS USED FOR CHANGE THE LANGUAGE
- * OF THE APPLICATION
- */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
@@ -29,9 +25,5 @@ public class WebConfig implements WebMvcConfigurer {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("lang");
         return localeChangeInterceptor;
-    }
-
-    public void addInterceptor(InterceptorRegistry registro){
-        registro.addInterceptor(localeChangeInterceptor());
     }
 }

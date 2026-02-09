@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
-@Slf4j
 public class ControllerUniversity {
 
     private final PersonaServicio personaServicio;
