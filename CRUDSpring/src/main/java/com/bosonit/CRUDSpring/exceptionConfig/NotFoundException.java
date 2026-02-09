@@ -1,4 +1,4 @@
-package com.bosonit.CRUDSpring.exceptionConfig;
+package com.bosonit.crudspring.exceptionConfig;
 
 import java.sql.Timestamp;
 

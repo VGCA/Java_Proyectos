@@ -1,21 +1,20 @@
-package com.bosonit.CRUDSpring.exceptionConfig;
+package com.bosonit.crudspring.exceptionConfig;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestController;
 
-@ControllerAdvice(annotations = RestController)
-public class Exception {
+@ControllerAdvice
+public class MainException {
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<?> notFoundException(Exception ex){
+    public ResponseEntity<Exception> notFoundException(Exception ex){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex);
     }
 
     @ExceptionHandler(UnprocesableException.class)
-    public ResponseEntity<?> unprocesableException(Exception ex){
+    public ResponseEntity<Exception> unprocesableException(Exception ex){
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(ex);
     }
 }

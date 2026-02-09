@@ -1,11 +1,10 @@
-package com.bosonit.CRUDSpring.servicio;
+package com.bosonit.crudspring.servicio;
 
-import com.bosonit.CRUDSpring.exceptionConfig.NotFoundException;
-import com.bosonit.CRUDSpring.exceptionConfig.UnprocesableException;
-import com.bosonit.CRUDSpring.interfaces.RepositorioPersona;
-import com.bosonit.CRUDSpring.interfacesService.InterfazPersonaServicio;
-import com.bosonit.CRUDSpring.modelo.Persona;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bosonit.crudspring.exceptionConfig.NotFoundException;
+import com.bosonit.crudspring.exceptionConfig.UnprocesableException;
+import com.bosonit.crudspring.interfaces.RepositorioPersona;
+import com.bosonit.crudspring.interfacesservice.InterfazPersonaServicio;
+import com.bosonit.crudspring.modelo.Persona;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -16,10 +15,13 @@ import java.util.List;
 @Service
 public class PersonaServicio implements InterfazPersonaServicio {
 
-    @Autowired
-    RepositorioPersona repositorioPersona;
+    final RepositorioPersona repositorioPersona;
 
-    ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
+    ArrayList<Persona> listaPersonas = new ArrayList<>();
+
+    public PersonaServicio(RepositorioPersona repositorioPersona) {
+        this.repositorioPersona = repositorioPersona;
+    }
 
     @Override
     public List<Persona> listarPersonas() {

@@ -1,10 +1,10 @@
-package com.bosonit.CRUDSpring.controlador;
+package com.bosonit.crudspring.controlador;
 
-import com.bosonit.CRUDSpring.interfacesService.InterfazPersonaServicio;
-import com.bosonit.CRUDSpring.modelo.Persona;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bosonit.crudspring.interfacesservice.InterfazPersonaServicio;
+import com.bosonit.crudspring.modelo.Persona;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,8 +15,11 @@ import java.util.Optional;
 @RequestMapping("persona")
 public class PersonaController {
 
-    @Autowired
-    InterfazPersonaServicio servicio;
+    final InterfazPersonaServicio servicio;
+
+    public PersonaController(InterfazPersonaServicio servicio) {
+        this.servicio = servicio;
+    }
 
     @GetMapping("/listar")
     List<Persona> listarPersonas(){
@@ -30,11 +33,11 @@ public class PersonaController {
 
     @PostMapping("/eliminar")
     public void borrarPersona(Persona persona){
-        servicio.borrarPersona(persona.getId_persona());
+        servicio.borrarPersona(persona.getIdPersona());
     }
 
     @GetMapping("/{id}")
-    public Optional<Persona> listarPorId(int id){
+    public List<Persona> listarPorId(@PathVariable int id) {
         return servicio.listarPorId(id);
     }
 }

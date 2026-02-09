@@ -1,4 +1,4 @@
-package com.bosonit.CRUDSpring;
+package com.bosonit.crudspring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

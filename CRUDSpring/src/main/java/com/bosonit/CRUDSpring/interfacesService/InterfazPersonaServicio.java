@@ -1,6 +1,6 @@
-package com.bosonit.CRUDSpring.interfacesService;
+package com.bosonit.crudspring.interfacesservice;
 
-import com.bosonit.CRUDSpring.modelo.Persona;
+import com.bosonit.crudspring.modelo.Persona;
 
 import java.util.List;
 
