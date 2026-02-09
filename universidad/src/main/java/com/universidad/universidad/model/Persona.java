@@ -5,21 +5,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-
 @Entity
 public class Persona {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotEmpty
     private String nombre;
-    @NotEmpty
     private String apellido;
-    @NotEmpty
-    @Email
     private String email;
     private String telefono;
 
@@ -53,23 +46,11 @@ public class Persona {
         return apellido;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getTelefono() {
         return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 }

@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface PersonaServicio {
 
-     List<Persona> ver_personas();
-     void guardar_persona(Persona persona);
-     void eliminar_persona(Persona persona);
-     Persona buscar_persona_por_id(Persona persona);
+     List<Persona> verPersonas();
+     void guardarPersona(Persona persona);
+     void eliminarPersona(Persona persona);
+     Persona buscarPersonaPorId(Persona persona);
 }

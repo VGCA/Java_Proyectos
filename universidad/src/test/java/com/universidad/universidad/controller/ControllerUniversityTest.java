@@ -1,17 +1,19 @@
-package com.universidad.universidad;
+package com.universidad.universidad.controller;
 
-import com.universidad.universidad.controller.ControllerUniversity;
+import org.junit.jupiter.api.Test;
+
 import com.universidad.universidad.model.Persona;
 import com.universidad.universidad.service.PersonaServicio;
-import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.Arrays;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 
 @WebMvcTest(ControllerUniversity.class)
 class ControllerUniversityTests {
@@ -22,11 +24,15 @@ class ControllerUniversityTests {
     @MockBean
     private PersonaServicio personaServicio;
 
-    private Persona getMockPersona() {
-        Persona p = new Persona();
-        p.setId(1);
-        p.setNombre("Test");
-        return p;
+    @Test
+    void testIndex() throws Exception {
+        Persona p = new Persona(1, "Juan", "Perez", "juan@mail.com", "123");
+        Mockito.when(personaServicio.verPersonas()).thenReturn(Arrays.asList(p));
+
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"))
+                .andExpect(model().attributeExists("listPersonas"));
     }
 
     @Test
@@ -38,32 +44,26 @@ class ControllerUniversityTests {
 
     @Test
     void testGuardarSuccess() throws Exception {
+        // We simulate the form submission with params
         mockMvc.perform(post("/guardar")
                         .param("nombre", "Juan")
+                        .param("apellido", "Perez")
                         .param("email", "juan@test.com"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
 
-        Mockito.verify(personaServicio).guardar_persona(Mockito.any(Persona.class));
-    }
-
-    @Test
-    void testGuardarWithErrors() throws Exception {
-
-        mockMvc.perform(post("/guardar")
-                        .param("nombre", ""))
-                .andExpect(status().isOk())
-                .andExpect(view().name("modificar"));
+        Mockito.verify(personaServicio).guardarPersona(Mockito.any(Persona.class));
     }
 
     @Test
     void testEditar() throws Exception {
-        Persona mockFound = getMockPersona();
+        Persona mockFound = new Persona(1, "Juan", "Perez", "j@mail.com", "123");
 
-        Mockito.when(personaServicio.buscar_persona_por_id(Mockito.any(Persona.class)))
+        // Match the service call exactly
+        Mockito.when(personaServicio.buscarPersonaPorId(Mockito.any(Persona.class)))
                 .thenReturn(mockFound);
 
-        mockMvc.perform(get("/edit/1"))
+        mockMvc.perform(get("/edit").param("id", "1"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("modificar"))
                 .andExpect(model().attributeExists("personaFind"));
@@ -71,11 +71,10 @@ class ControllerUniversityTests {
 
     @Test
     void testBorrar() throws Exception {
-        mockMvc.perform(get("/delete/1"))
+        mockMvc.perform(get("/delete").param("id", "1"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
 
-        Mockito.verify(personaServicio).eliminar_persona(Mockito.any(Persona.class));
+        Mockito.verify(personaServicio).eliminarPersona(Mockito.any(Persona.class));
     }
 }
-

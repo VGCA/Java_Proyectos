@@ -20,24 +20,24 @@ public class PersonaServicioImpl implements PersonaServicio{
 
     @Override
     @Transactional(readOnly = true)
-    public List<Persona> ver_personas() {
+    public List<Persona> verPersonas() {
         return personaRepository.findAll();
     }
 
     @Override
     @Transactional
-    public void guardar_persona(Persona persona) {
+    public void guardarPersona(Persona persona) {
         personaRepository.save(persona);
     }
 
     @Override
     @Transactional
-    public void eliminar_persona(Persona persona) {
+    public void eliminarPersona(Persona persona) {
         personaRepository.delete(persona);
     }
 
     @Override
-    public Persona buscar_persona_por_id(Persona persona) {
+    public Persona buscarPersonaPorId(Persona persona) {
         return personaRepository.findById(persona.getId()).orElse(null);
     }
 }
