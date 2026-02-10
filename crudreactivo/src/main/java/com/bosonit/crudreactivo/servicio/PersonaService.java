@@ -10,8 +10,11 @@ import reactor.core.publisher.Mono;
 @Service
 public class PersonaService {
 
-    @Autowired
-    private PersonaRepo personaRepo;
+    private final PersonaRepo personaRepo;
+
+    public PersonaService(PersonaRepo personaRepo) {
+        this.personaRepo = personaRepo;
+    }
 
     public Mono<Persona> ingresarPersona(Persona persona){
         return personaRepo.save(persona);

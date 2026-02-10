@@ -1,7 +1,7 @@
-package com.portfolio.eCommerce.repositorio;
+package com.portfolio.ecommerce.repositorio;
 
-import com.portfolio.eCommerce.modelo.Orden;
-import com.portfolio.eCommerce.modelo.Usuario;
+import com.portfolio.ecommerce.modelo.Orden;
+import com.portfolio.ecommerce.modelo.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

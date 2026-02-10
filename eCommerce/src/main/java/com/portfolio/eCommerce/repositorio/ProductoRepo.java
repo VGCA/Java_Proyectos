@@ -1,6 +1,6 @@
-package com.portfolio.eCommerce.repositorio;
+package com.portfolio.ecommerce.repositorio;
 
-import com.portfolio.eCommerce.modelo.Producto;
+import com.portfolio.ecommerce.modelo.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

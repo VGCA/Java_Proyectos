@@ -1,4 +1,4 @@
-package com.portfolio.eCommerce.servicio;
+package com.portfolio.ecommerce.servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

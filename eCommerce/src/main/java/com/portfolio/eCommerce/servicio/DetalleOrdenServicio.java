@@ -1,6 +1,6 @@
-package com.portfolio.eCommerce.servicio;
+package com.portfolio.ecommerce.servicio;
 
-import com.portfolio.eCommerce.modelo.DetalleOrden;
+import com.portfolio.ecommerce.modelo.DetalleOrden;
 
 public interface DetalleOrdenServicio {
 

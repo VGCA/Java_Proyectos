@@ -1,6 +1,6 @@
-package com.portfolio.eCommerce.servicio;
+package com.portfolio.ecommerce.servicio;
 
-import com.portfolio.eCommerce.modelo.Usuario;
+import com.portfolio.ecommerce.modelo.Usuario;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +17,16 @@ import java.util.Optional;
 @Service
 public class DetalleUsuarioServicioImp implements UserDetailsService {
 
-    @Autowired
-    private UsuarioServicio usuarioServicio;
+    private final UsuarioServicio usuarioServicio;
 
-    @Autowired
-    private BCryptPasswordEncoder bCrypt;
-
-    @Autowired
-    HttpSession session;
+    private final HttpSession session;
 
     private Logger log = LoggerFactory.getLogger(DetalleUsuarioServicioImp.class);
+
+    public DetalleUsuarioServicioImp(UsuarioServicio usuarioServicio, HttpSession session) {
+        this.usuarioServicio = usuarioServicio;
+        this.session = session;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

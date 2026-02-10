@@ -1,13 +1,13 @@
-package com.portfolio.eCommerce.controlador;
+package com.portfolio.ecommerce.controlador;
 
-import com.portfolio.eCommerce.modelo.DetalleOrden;
-import com.portfolio.eCommerce.modelo.Orden;
-import com.portfolio.eCommerce.modelo.Producto;
-import com.portfolio.eCommerce.modelo.Usuario;
-import com.portfolio.eCommerce.servicio.DetalleOrdenServicio;
-import com.portfolio.eCommerce.servicio.OrdenServicio;
-import com.portfolio.eCommerce.servicio.ProductoServicio;
-import com.portfolio.eCommerce.servicio.UsuarioServiceImp;
+import com.portfolio.ecommerce.modelo.DetalleOrden;
+import com.portfolio.ecommerce.modelo.Orden;
+import com.portfolio.ecommerce.modelo.Producto;
+import com.portfolio.ecommerce.modelo.Usuario;
+import com.portfolio.ecommerce.servicio.DetalleOrdenServicio;
+import com.portfolio.ecommerce.servicio.OrdenServicio;
+import com.portfolio.ecommerce.servicio.ProductoServicio;
+import com.portfolio.ecommerce.servicio.UsuarioServiceImp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,38 +26,38 @@ import java.util.stream.Collectors;
 @RequestMapping("/")
 public class HomeController {
 
-    private final Logger log = LoggerFactory.getLogger(HomeController.class);
+    private final ProductoServicio productoServicio;
 
-    @Autowired
-    private ProductoServicio productoServicio;
+    private final UsuarioServiceImp usuarioServiceImp;
 
-    @Autowired
-    private UsuarioServiceImp usuarioServiceImp;
+    private final OrdenServicio ordenServicio;
 
-    @Autowired
-    private OrdenServicio ordenServicio;
-
-    @Autowired
-    private DetalleOrdenServicio detalleOrdenServicio;
+    private final DetalleOrdenServicio detalleOrdenServicio;
 
     List<DetalleOrden> detalles = new ArrayList<DetalleOrden>();
 
     Orden orden = new Orden();
 
+    public HomeController(ProductoServicio productoServicio, UsuarioServiceImp usuarioServiceImp, OrdenServicio ordenServicio, DetalleOrdenServicio detalleOrdenServicio) {
+        this.productoServicio = productoServicio;
+        this.usuarioServiceImp = usuarioServiceImp;
+        this.ordenServicio = ordenServicio;
+        this.detalleOrdenServicio = detalleOrdenServicio;
+    }
+
     @GetMapping
     public String home(Model model, HttpSession session) {
-        log.info("Sesion de usuario " + session.getAttribute("idusuario"));
+
         model.addAttribute("productos", productoServicio.findAll());
-        // Sesión del usuario
         model.addAttribute("sesion", session.getAttribute("idusuario"));
         return "usuario/home";
     }
 
     @GetMapping("productohome/{id}")
     public String productoHome(@PathVariable Integer id, Model model) {
-        log.info("Id enviado como parámetro " + id);
 
-        Producto producto = new Producto();
+
+        Producto producto;
         Optional<Producto> productoOptional = productoServicio.get(id);
         producto = productoOptional.get();
         model.addAttribute("producto", producto);
@@ -69,12 +69,10 @@ public class HomeController {
     public String addCart(@RequestParam Integer id, @RequestParam Integer cantidad, Model model) {
 
         DetalleOrden detalleOrden = new DetalleOrden();
-        Producto producto = new Producto();
+        Producto producto;
         double sumaTotal = 0;
 
         Optional<Producto> optionalProducto = productoServicio.get(id);
-        log.info("Producto añadido ", optionalProducto.get());
-        log.info("Cantidad " + cantidad);
 
         producto = optionalProducto.get();
         detalleOrden.setCantidad(cantidad);
@@ -145,7 +143,7 @@ public class HomeController {
 
     @PostMapping("/search")
     public String searchProduct(@RequestParam String nombre, Model model) {
-        log.info("Nombre del producto " + nombre);
+
         List<Producto> productos = productoServicio.findAll().stream().filter(p -> p.getNombre().contains(nombre)).collect(Collectors.toList());
         model.addAttribute("productos", productos);
         return "usuario/home";

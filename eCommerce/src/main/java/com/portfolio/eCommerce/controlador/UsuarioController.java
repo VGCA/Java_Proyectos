@@ -1,9 +1,9 @@
-package com.portfolio.eCommerce.controlador;
+package com.portfolio.ecommerce.controlador;
 
-import com.portfolio.eCommerce.modelo.Orden;
-import com.portfolio.eCommerce.modelo.Usuario;
-import com.portfolio.eCommerce.servicio.OrdenServicio;
-import com.portfolio.eCommerce.servicio.UsuarioServicio;
+import com.portfolio.ecommerce.modelo.Orden;
+import com.portfolio.ecommerce.modelo.Usuario;
+import com.portfolio.ecommerce.servicio.OrdenServicio;
+import com.portfolio.ecommerce.servicio.UsuarioServicio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +24,16 @@ import java.util.Optional;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioServicio usuarioServicio;
+    private final UsuarioServicio usuarioServicio;
 
-    @Autowired
-    private OrdenServicio ordenServicio;
-
-    private final Logger log = LoggerFactory.getLogger(UsuarioController.class);
+    private final OrdenServicio ordenServicio;
 
     BCryptPasswordEncoder passEncode = new BCryptPasswordEncoder();
+
+    public UsuarioController(UsuarioServicio usuarioServicio, OrdenServicio ordenServicio) {
+        this.usuarioServicio = usuarioServicio;
+        this.ordenServicio = ordenServicio;
+    }
 
     @GetMapping("/registro")
     public String create() {
@@ -41,7 +42,6 @@ public class UsuarioController {
 
     @PostMapping("/save")
     public String save(Usuario usuario) {
-        log.info("Usuario registrado " + usuario);
         usuario.setTipo("USER");
         usuario.setPassword(passEncode.encode(usuario.getPassword()));
         usuarioServicio.save(usuario);
@@ -55,7 +55,6 @@ public class UsuarioController {
 
     @GetMapping("/acceder")
     public String acceder(Usuario usuario, HttpSession session) {
-        log.info("Acceso de " + usuario);
         Optional<Usuario> user = usuarioServicio.findById(Integer.parseInt(session.getAttribute("idusuario").toString()));
 
         if (user.isPresent()) {
@@ -65,8 +64,6 @@ public class UsuarioController {
             } else {
                 return "redirect:/";
             }
-        } else {
-            log.info("Usuario no existe " + usuario.getNombre());
         }
         return "redirect:/";
     }
@@ -84,7 +81,6 @@ public class UsuarioController {
 
     @GetMapping("/detalle/{id}")
     public String detalleCompra(@PathVariable Integer id, HttpSession session, Model model) {
-        log.info("Id de la orden " + id);
         Optional<Orden> orden = ordenServicio.findById(id);
         model.addAttribute("detalles", orden.get().getDetalle());
 

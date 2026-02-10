@@ -1,4 +1,4 @@
-package com.portfolio.eCommerce.modelo;
+package com.portfolio.ecommerce.modelo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

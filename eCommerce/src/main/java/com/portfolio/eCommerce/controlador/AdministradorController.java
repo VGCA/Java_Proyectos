@@ -1,10 +1,10 @@
-package com.portfolio.eCommerce.controlador;
+package com.portfolio.ecommerce.controlador;
 
-import com.portfolio.eCommerce.modelo.Orden;
-import com.portfolio.eCommerce.modelo.Producto;
-import com.portfolio.eCommerce.servicio.OrdenServicio;
-import com.portfolio.eCommerce.servicio.ProductoServicio;
-import com.portfolio.eCommerce.servicio.UsuarioServicio;
+import com.portfolio.ecommerce.modelo.Orden;
+import com.portfolio.ecommerce.modelo.Producto;
+import com.portfolio.ecommerce.servicio.OrdenServicio;
+import com.portfolio.ecommerce.servicio.ProductoServicio;
+import com.portfolio.ecommerce.servicio.UsuarioServicio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +20,17 @@ import java.util.List;
 @RequestMapping("/administrador")
 public class AdministradorController {
 
-    @Autowired
-    private ProductoServicio productoServicio;
+    private final ProductoServicio productoServicio;
 
-    @Autowired
-    private UsuarioServicio usuarioServicio;
+    private final UsuarioServicio usuarioServicio;
 
-    @Autowired
-    private OrdenServicio ordenServicio;
+    private final OrdenServicio ordenServicio;
 
-    private Logger logg = LoggerFactory.getLogger(AdministradorController.class);
+    public AdministradorController(ProductoServicio productoServicio, UsuarioServicio usuarioServicio, OrdenServicio ordenServicio) {
+        this.productoServicio = productoServicio;
+        this.usuarioServicio = usuarioServicio;
+        this.ordenServicio = ordenServicio;
+    }
 
     @GetMapping
     public String home(Model model) {
@@ -52,7 +53,6 @@ public class AdministradorController {
 
     @GetMapping("/detalle/{id}")
     public String detalle(Model model, @PathVariable Integer id) {
-        logg.info("Id de la orden "+id);
         Orden orden = ordenServicio.findById(id).get();
         model.addAttribute("detalles", orden.getDetalle());
         return "administrador/detalleorden";

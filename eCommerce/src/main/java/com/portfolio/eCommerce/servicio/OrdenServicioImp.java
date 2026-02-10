@@ -1,8 +1,8 @@
-package com.portfolio.eCommerce.servicio;
+package com.portfolio.ecommerce.servicio;
 
-import com.portfolio.eCommerce.modelo.Orden;
-import com.portfolio.eCommerce.modelo.Usuario;
-import com.portfolio.eCommerce.repositorio.OrdenRepo;
+import com.portfolio.ecommerce.modelo.Orden;
+import com.portfolio.ecommerce.modelo.Usuario;
+import com.portfolio.ecommerce.repositorio.OrdenRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

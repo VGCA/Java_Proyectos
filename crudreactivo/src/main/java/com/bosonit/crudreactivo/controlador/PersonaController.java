@@ -12,10 +12,13 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/api/")
 public class PersonaController {
 
-    @Autowired
-    private PersonaService personaService;
+    private final PersonaService personaService;
 
-    /*@GetMapping("/verlista")
+    public PersonaController(PersonaService personaService) {
+        this.personaService = personaService;
+    }
+
+    @GetMapping("/verlista")
     public Flux<Persona> verPersonas() {
         return personaService.verPersonas();
     }
@@ -23,7 +26,7 @@ public class PersonaController {
     @PostMapping("/guardar")
     public Mono<Persona> agregarPersona(@RequestBody Persona p){
         return personaService.ingresarPersona(p);
-    }*/
+    }
 
     @GetMapping
     public String verPersonas(Model model) {

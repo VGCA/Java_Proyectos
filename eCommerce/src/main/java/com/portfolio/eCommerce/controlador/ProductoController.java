@@ -1,10 +1,10 @@
-package com.portfolio.eCommerce.controlador;
+package com.portfolio.ecommerce.controlador;
 
-import com.portfolio.eCommerce.modelo.Producto;
-import com.portfolio.eCommerce.modelo.Usuario;
-import com.portfolio.eCommerce.servicio.ProductoServicio;
-import com.portfolio.eCommerce.servicio.UploadFileService;
-import com.portfolio.eCommerce.servicio.UsuarioServicio;
+import com.portfolio.ecommerce.modelo.Producto;
+import com.portfolio.ecommerce.modelo.Usuario;
+import com.portfolio.ecommerce.servicio.ProductoServicio;
+import com.portfolio.ecommerce.servicio.UploadFileService;
+import com.portfolio.ecommerce.servicio.UsuarioServicio;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

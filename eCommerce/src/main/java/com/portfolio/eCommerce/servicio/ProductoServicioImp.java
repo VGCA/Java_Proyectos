@@ -1,7 +1,7 @@
-package com.portfolio.eCommerce.servicio;
+package com.portfolio.ecommerce.servicio;
 
-import com.portfolio.eCommerce.modelo.Producto;
-import com.portfolio.eCommerce.repositorio.ProductoRepo;
+import com.portfolio.ecommerce.modelo.Producto;
+import com.portfolio.ecommerce.repositorio.ProductoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

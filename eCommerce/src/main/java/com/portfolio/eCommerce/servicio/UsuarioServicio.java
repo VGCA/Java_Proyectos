@@ -1,6 +1,6 @@
-package com.portfolio.eCommerce.servicio;
+package com.portfolio.ecommerce.servicio;
 
-import com.portfolio.eCommerce.modelo.Usuario;
+import com.portfolio.ecommerce.modelo.Usuario;
 
 import java.util.List;
 import java.util.Optional;

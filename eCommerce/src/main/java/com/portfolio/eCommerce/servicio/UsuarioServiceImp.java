@@ -1,7 +1,7 @@
-package com.portfolio.eCommerce.servicio;
+package com.portfolio.ecommerce.servicio;
 
-import com.portfolio.eCommerce.modelo.Usuario;
-import com.portfolio.eCommerce.repositorio.UsuarioRepo;
+import com.portfolio.ecommerce.modelo.Usuario;
+import com.portfolio.ecommerce.repositorio.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +11,11 @@ import java.util.Optional;
 @Service
 public class UsuarioServiceImp implements UsuarioServicio{
 
-    @Autowired
-    private UsuarioRepo usuarioRepo;
+    private final UsuarioRepo usuarioRepo;
+
+    public UsuarioServiceImp(UsuarioRepo usuarioRepo) {
+        this.usuarioRepo = usuarioRepo;
+    }
 
     @Override
     public Optional<Usuario> findById(Integer id) {
