@@ -1,13 +1,13 @@
-package com.bosonit.CRUDrelaciones.interfazServicio;
+package com.bosonit.crudrelaciones.interfazservicio;
 
-import com.bosonit.CRUDrelaciones.modelo.Student;
+import com.bosonit.crudrelaciones.modelo.Student;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface InterfazStudent {
-    public List<Student> listarAlumnos();
-    public Optional<Student> listarPorId(String id);
-    public int guardarEstudiante(Student estudiante);
-    public void borrarEstudiante(String id);
+    List<Student> listarAlumnos();
+    Optional<Student> listarPorId(Integer id);
+    Student guardarEstudiante(Student estudiante);
+    void borrarEstudiante(Integer id);
 }

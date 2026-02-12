@@ -1,9 +1,8 @@
-package com.bosonit.CRUDrelaciones.servicio;
+package com.bosonit.crudrelaciones.servicio;
 
-import com.bosonit.CRUDrelaciones.interfazServicio.InterfazStudent;
-import com.bosonit.CRUDrelaciones.modelo.Student;
-import com.bosonit.CRUDrelaciones.repositorio.Repositorio;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bosonit.crudrelaciones.interfazservicio.InterfazStudent;
+import com.bosonit.crudrelaciones.modelo.Student;
+import com.bosonit.crudrelaciones.repositorio.Repositorio;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +11,11 @@ import java.util.Optional;
 @Service
 public class ServicioEstudiante implements InterfazStudent {
 
-    @Autowired
-    private Repositorio repositorio;
+    private final Repositorio repositorio;
+
+    public ServicioEstudiante(Repositorio repositorio) {
+        this.repositorio = repositorio;
+    }
 
     @Override
     public List<Student> listarAlumnos() {
@@ -21,22 +23,17 @@ public class ServicioEstudiante implements InterfazStudent {
     }
 
     @Override
-    public Optional<Student> listarPorId(String id) {
+    public Optional<Student> listarPorId(Integer id) {
         return repositorio.findById(id);
     }
 
     @Override
-    public int guardarEstudiante(Student estudiante) {
-        int respuesta = 0;
-        Student nuevoEstudiante = repositorio.save(estudiante);
-        if(!estudiante.equals(null)){
-            respuesta = 1;
-        }
-        return respuesta;
+    public Student guardarEstudiante(Student estudiante) {
+        return repositorio.save(estudiante);
     }
 
     @Override
-    public void borrarEstudiante(String id) {
+    public void borrarEstudiante(Integer id) {
         repositorio.deleteById(id);
     }
 }

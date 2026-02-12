@@ -1,23 +1,25 @@
-package com.bosonit.CRUDrelaciones.servicio;
+package com.bosonit.crudrelaciones.servicio;
 
-import com.bosonit.CRUDrelaciones.interfazServicio.InterfazProfesor;
-import com.bosonit.CRUDrelaciones.modelo.Profesor;
-import com.bosonit.CRUDrelaciones.modelo.Student;
-import com.bosonit.CRUDrelaciones.repositorio.RepoProfesores;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bosonit.crudrelaciones.interfazServicio.InterfazProfesor;
+import com.bosonit.crudrelaciones.modelo.Profesor;
+import com.bosonit.crudrelaciones.repositorio.RepoProfesores;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ServicioProfesor implements InterfazProfesor {
 
-    @Autowired
-    private RepoProfesores repositorio;
+    private final RepoProfesores repositorio;
+
+    public ServicioProfesor(RepoProfesores repositorio) {
+        this.repositorio = repositorio;
+    }
 
     @Override
     public List<Profesor> listarProfesores() {
-        return (List<Profesor>)repositorio.findAll();
-        // No puede usar el mismo repositorio que el de Students
+        return (List<Profesor>) repositorio.findAll();
     }
 
     @Override
@@ -32,6 +34,6 @@ public class ServicioProfesor implements InterfazProfesor {
 
     @Override
     public void borrarProfesor(String id) {
-
+        repositorio.deleteById(id);
     }
 }

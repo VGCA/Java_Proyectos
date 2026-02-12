@@ -1,9 +1,8 @@
-package com.bosonit.CRUDrelaciones.modelo;
+package com.bosonit.crudrelaciones.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
-@Table(name="profesor")
-public record Profesor(String id_profesor, String id_persona, String coments, String branch) {}
+public record Profesor(@Id Integer id, String id_profesor, String id_persona, String coments, String branch) {}

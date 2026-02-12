@@ -1,4 +1,4 @@
-package com.bosonit.CRUDrelaciones.modelo;
+package com.bosonit.crudrelaciones.modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
