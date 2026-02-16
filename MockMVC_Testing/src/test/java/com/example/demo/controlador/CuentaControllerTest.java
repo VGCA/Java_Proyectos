@@ -28,7 +28,6 @@ class CuentaControllerTest {
 
     @MockBean
     private CuentaServicio cuentaServicio;
-    private Cuenta cuenta;
 
     @BeforeEach
     void setUp() {

@@ -17,11 +17,14 @@ import java.util.Map;
 @RequestMapping("/api")
 public class CuentaController {
 
-    @Autowired
-    private CuentaServicio cuentaServicio;
+    private final CuentaServicio cuentaServicio;
+
+    public CuentaController(CuentaServicio cuentaServicio) {
+        this.cuentaServicio = cuentaServicio;
+    }
 
     @RequestMapping("/")
-    public @ResponseBody String greeting() {
+    public String greeting() {
         return "Hello, World";
     }
 
@@ -44,7 +47,7 @@ public class CuentaController {
     }
 
     @PostMapping("/transferir")
-    public ResponseEntity<?> transferirDinero(@RequestBody DTO dto) {
+    public ResponseEntity<Object> transferirDinero(@RequestBody DTO dto) {
         cuentaServicio.transferirDinero(dto.getCuentaOrigenId(),
                 dto.getCuentaDestinoId(), dto.getMonto(), dto.getBancoId());
 

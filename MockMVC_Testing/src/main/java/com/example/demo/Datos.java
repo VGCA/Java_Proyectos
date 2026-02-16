@@ -8,6 +8,9 @@ import java.util.Optional;
 
 public class Datos {
 
+    private Datos() {
+    }
+
     public static Optional<Cuenta> crearCuenta001(){
         return Optional.of(new Cuenta(1L,"Mario",new BigDecimal("1000")));
     }
