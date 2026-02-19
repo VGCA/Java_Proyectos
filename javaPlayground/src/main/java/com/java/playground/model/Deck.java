@@ -3,18 +3,20 @@ package com.java.playground.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Deck {
-    private final Stack<Card> drawPile = new Stack<>();
-    private final Stack<Card> discardPile = new Stack<>();
+
+    private final Deque<Card> drawPile = new ArrayDeque<>();
+    private final Deque<Card> discardPile = new ArrayDeque<>();
 
     public void addCard(Card card) {
         drawPile.push(card);
     }
 
     public void shuffle() {
-        Collections.shuffle(drawPile);
+        Collections.shuffle((List<?>) drawPile);
     }
 
     public List<Card> drawCards(int amount) {
