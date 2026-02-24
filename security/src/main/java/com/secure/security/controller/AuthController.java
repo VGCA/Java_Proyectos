@@ -11,10 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import com.secure.security.model.User;
 import com.secure.security.services.UserService;
@@ -32,14 +29,14 @@ public class AuthController {
         this.authenticationManager = authenticationManager;
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @GetMapping(value = "/register")
     public String register(HttpServletRequest request, HttpServletResponse response, Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "register";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping(value = "/register")
     public String createNewUser(HttpServletRequest request, HttpServletResponse response,
             @ModelAttribute("user") User user) {
 
