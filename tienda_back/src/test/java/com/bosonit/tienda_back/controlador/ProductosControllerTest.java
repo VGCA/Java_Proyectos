@@ -19,12 +19,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@WebMvcTest(ProductosController.class)
 class ProductosControllerTest {
 
     private MockMvc mockMvc;
     private ProductosServicio productosServicio;
     private CategoriasServicio categoriasServicio;
     private ObjectMapper objectMapper;
+
+    private static final String NOMBRE_CAMPO = "$.nombre";
 
     @BeforeEach
     void setup() {
@@ -69,7 +72,7 @@ class ProductosControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(producto)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nombre").value("Zapatos"));
+                .andExpect(jsonPath(NOMBRE_CAMPO).value("Zapatos"));
     }
 
     @Test
@@ -80,7 +83,7 @@ class ProductosControllerTest {
 
         mockMvc.perform(get("/api/productos/listar/3"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nombre").value("Gorra"));
+                .andExpect(jsonPath(NOMBRE_CAMPO).value("Gorra"));
     }
 
     @Test
@@ -94,7 +97,7 @@ class ProductosControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(actualizado)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nombre").value("Pantalón Jeans"))
+                .andExpect(jsonPath(NOMBRE_CAMPO).value("Pantalón Jeans"))
                 .andExpect(jsonPath("$.precio").value(39.99));
     }
 

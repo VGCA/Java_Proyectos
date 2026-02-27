@@ -1,10 +1,6 @@
 package com.bosonit.tienda_back.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="categorias")
@@ -20,6 +16,8 @@ public class Categoria {
         this.id = id;
         this.nombre = nombre;
     }
+
+    public Categoria(){}
 
     public int getId() {
         return id;

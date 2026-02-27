@@ -1,13 +1,7 @@
 package com.bosonit.tienda_back.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="productos")
@@ -32,6 +26,8 @@ public class Producto {
         this.imagen = imagen;
         this.categoria = categoria;
     }
+
+    public Producto(){}
 
     public int getId() {
         return id;
