@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.bosonit.gestionusuarios.constantes.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,6 +29,8 @@ public class EmpleadoController {
     @Autowired
     private EmpleadoRepo empleadoRepo;
 
+    private Utils utils;
+
     @GetMapping("/empleados")
     public List<Empleado> listarEmpleados() {
         return empleadoRepo.findAll();
@@ -41,14 +44,14 @@ public class EmpleadoController {
     @GetMapping("/empleados/{id}")
     public ResponseEntity<Empleado> obtenerEmpleado(@PathVariable int id) {
         Empleado empleado = empleadoRepo.findById(id)
-                .orElseThrow(() -> new RecursoNoEncontrado("No existe el empleado deseado"));
+                .orElseThrow(() -> new RecursoNoEncontrado(utils.NOEXISTEEMPLEADO));
         return ResponseEntity.ok(empleado);
     }
 
     @PutMapping("/empleados")
     public ResponseEntity<Empleado> actualizarEmpleado(@PathVariable int id, @RequestBody Empleado detallesEmpleado) {
         Empleado empleado = empleadoRepo.findById(id)
-                .orElseThrow(() -> new RecursoNoEncontrado("No existe el empleado deseado"));
+                .orElseThrow(() -> new RecursoNoEncontrado(utils.NOEXISTEEMPLEADO));
 
         empleado.setNombre(detallesEmpleado.getNombre());
         empleado.setApellido(detallesEmpleado.getApellido());
@@ -62,7 +65,7 @@ public class EmpleadoController {
     @DeleteMapping("/empleados/{id}")
     public ResponseEntity<Map<String, Boolean>> eliminarEmpleado(@PathVariable int id) {
         Empleado empleado = empleadoRepo.findById(id)
-                .orElseThrow(() -> new RecursoNoEncontrado("No existe el empleado deseado"));
+                .orElseThrow(() -> new RecursoNoEncontrado(utils.NOEXISTEEMPLEADO));
 
         empleadoRepo.delete(empleado);
         Map<String, Boolean> respuesta = new HashMap<>();
