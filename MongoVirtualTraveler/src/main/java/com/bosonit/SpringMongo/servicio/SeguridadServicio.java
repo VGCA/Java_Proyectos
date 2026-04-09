@@ -1,23 +1,25 @@
-package com.bosonit.SpringMongo.servicio;
+package com.bosonit.springmongo.servicio;
 
-import com.bosonit.SpringMongo.repositorio.RepoSeguridad;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bosonit.springmongo.repositorio.RepoSeguridad;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SeguridadServicio {
-    
-    @Autowired
-    RepoSeguridad repoSeguridad;
+
+    private final RepoSeguridad repoSeguridad;
+
+    public SeguridadServicio(RepoSeguridad repoSeguridad) {
+        this.repoSeguridad = repoSeguridad;
+    }
 
     /**
      * FUNCION QUE VALIDA UN USUARIO Y CONTRASENIA
+     *
      * @param username
      * @param password
      * @return true or false
      */
-    public boolean validar(String username,String password){
+    public boolean validar(String username, String password) {
         return repoSeguridad.validar(username, password);
     }
 }

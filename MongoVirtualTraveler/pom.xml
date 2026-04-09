@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bosonit</groupId>
-	<artifactId>SpringMongo</artifactId>
+	<artifactId>springmongo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringMongo</name>
 	<description>Demo project for Spring Boot</description>

@@ -1,4 +1,4 @@
-package com.bosonit.SpringMongo.modelo;
+package com.bosonit.springmongo.modelo;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

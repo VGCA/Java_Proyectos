@@ -1,4 +1,4 @@
-package com.bosonit.SpringMongo;
+package com.bosonit.springmongo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

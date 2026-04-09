@@ -1,4 +1,4 @@
-package com.bosonit.SpringMongo.controlador;
+package com.bosonit.springmongo.controlador;
 
 import java.util.Date;
 
@@ -10,8 +10,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.bosonit.SpringMongo.servicio.SeguridadServicio;
+import com.bosonit.springmongo.servicio.SeguridadServicio;
 
+import com.bosonit.springmongo.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,13 +26,16 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @RequestMapping("/seguridad")
 public class SeguridadController {
 
-    @Autowired
-    SeguridadServicio seguridadServicio;
+    private final SeguridadServicio seguridadServicio;
+    private final Utils utils;
 
-    /**
-     * FUNCIÓN QUE RETORNA SI TODO ESTÁ BIEN
-     * @return saludo
-     */
+
+
+    public SeguridadController(SeguridadServicio seguridadServicio, Utils utils) {
+        this.seguridadServicio = seguridadServicio;
+        this.utils = utils;
+    }
+
     @GetMapping
     public String saludo(){
         return "Todo funciona";
@@ -43,10 +47,10 @@ public class SeguridadController {
     public Response validar(@PathParam("username") String username, @PathParam("password") String password) {
         boolean estado = seguridadServicio.validar(username, password);
         if (estado) {
-            String key = "mi_clave";
+
             long tiempo = System.currentTimeMillis();
             String jwt = Jwts.builder()
-                    .signWith(SignatureAlgorithm.HS256, key)
+                    .signWith(SignatureAlgorithm.HS256, utils.getKey())
                     .setSubject("Spring Security")
                     .setIssuedAt(new Date(tiempo))
                     .setExpiration(new Date(tiempo + 900000))

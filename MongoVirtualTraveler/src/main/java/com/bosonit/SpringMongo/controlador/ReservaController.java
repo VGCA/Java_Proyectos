@@ -1,4 +1,4 @@
-package com.bosonit.SpringMongo.controlador;
+package com.bosonit.springmongo.controlador;
 
 import java.util.List;
 
@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bosonit.SpringMongo.modelo.Reserva;
-import com.bosonit.SpringMongo.repositorio.ReservaRepo;
+import com.bosonit.springmongo.modelo.Reserva;
+import com.bosonit.springmongo.repositorio.ReservaRepo;
 
 @RestController
 @RequestMapping("/reserva")
 public class ReservaController {
-    
-    @Autowired
-    ReservaRepo reservaRepo;
+
+    private final ReservaRepo reservaRepo;
+
+    public ReservaController(ReservaRepo reservaRepo) {
+        this.reservaRepo = reservaRepo;
+    }
 
     @PostMapping("/reservar")
     public Reserva hacerReserva(@RequestBody Reserva reserva) {

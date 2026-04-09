@@ -1,4 +1,4 @@
-package com.bosonit.SpringMongo.modelo;
+package com.bosonit.springmongo.modelo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,6 +16,8 @@ public class Reserva {
         this.dia = dia;
         this.mes = mes;
     }
+
+    public Reserva(){}
 
     public String getId() {
         return id;

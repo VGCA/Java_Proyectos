@@ -1,4 +1,4 @@
-package com.bosonit.SpringMongo.repositorio;
+package com.bosonit.springmongo.repositorio;
 
 import java.util.List;
 
@@ -6,13 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.bosonit.SpringMongo.modelo.Reserva;
+import com.bosonit.springmongo.modelo.Reserva;
 
 @Repository
 public class ReservaRepo {
 
-    @Autowired
-    private MongoTemplate mongoTemplate;
+    private final MongoTemplate mongoTemplate;
+
+    public ReservaRepo(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     /**
      * FUNCION QUE HACE UNA RESERVA
