@@ -18,7 +18,7 @@ public class RecursoNoEncontradoHandler {
 	@ExceptionHandler(RecursoNoEncontradorException.class)
 	@ResponseBody
 	public ResponseEntity<?> handleValidationException(RecursoNoEncontradorException e) {
-		return new ResponseEntity<Object>(e.getMessage(), HttpStatus.NOT_FOUND);		
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 	}
 
 }

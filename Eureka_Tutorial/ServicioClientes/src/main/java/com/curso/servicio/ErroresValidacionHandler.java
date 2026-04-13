@@ -26,7 +26,7 @@ public class ErroresValidacionHandler {
 			.stream()
 			.collect(Collectors.toMap( fe -> (String) fe.getField(), 
 					                   fe -> (String) fe.getDefaultMessage()));
-		return new ResponseEntity<Object>(errores, HttpStatus.BAD_REQUEST);		
+		return new ResponseEntity<>(errores, HttpStatus.BAD_REQUEST);
 	}
 
 }
