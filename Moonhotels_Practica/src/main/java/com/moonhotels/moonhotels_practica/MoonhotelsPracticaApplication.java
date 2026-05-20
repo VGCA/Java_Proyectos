@@ -1,4 +1,4 @@
-package com.moonhotels.Moonhotels_Practica;
+package com.moonhotels.moonhotels_practica;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

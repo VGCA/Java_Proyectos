@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.moonhotels</groupId>
-	<artifactId>Moonhotels_Practica</artifactId>
+	<artifactId>moonhotels_practica</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Moonhotels_Practica</name>
+	<name>moonhotels_practica</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

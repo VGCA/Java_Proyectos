@@ -1,4 +1,4 @@
-package com.moonhotels.Moonhotels_Practica.model;
+package com.moonhotels.moonhotels_practica.model;
 import java.time.LocalDate;
 
 public class HubRequest {

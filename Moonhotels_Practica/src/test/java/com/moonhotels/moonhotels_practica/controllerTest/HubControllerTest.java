@@ -1,9 +1,9 @@
-package com.moonhotels.Moonhotels_Practica.controllerTest;
+package com.moonhotels.moonhotels_practica.controllerTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.moonhotels.Moonhotels_Practica.controller.HubController;
-import com.moonhotels.Moonhotels_Practica.model.HubRequest;
-import com.moonhotels.Moonhotels_Practica.service.SearchService;
+import com.moonhotels.moonhotels_practica.controller.HubController;
+import com.moonhotels.moonhotels_practica.model.HubRequest;
+import com.moonhotels.moonhotels_practica.service.SearchService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -50,7 +50,7 @@ class HubControllerTest {
         request.setNumberOfRooms(1);
         request.setCurrency("USD");
 
-        when(searchService.search(any())).thenReturn(new com.moonhotels.Moonhotels_Practica.model.HubResponse());
+        when(searchService.search(any())).thenReturn(new com.moonhotels.moonhotels_practica.model.HubResponse());
 
         mockMvc.perform(post("/hub/search")
                         .contentType(MediaType.APPLICATION_JSON)

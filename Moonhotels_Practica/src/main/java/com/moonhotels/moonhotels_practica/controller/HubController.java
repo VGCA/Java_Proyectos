@@ -1,8 +1,8 @@
-package com.moonhotels.Moonhotels_Practica.controller;
+package com.moonhotels.moonhotels_practica.controller;
 
-import com.moonhotels.Moonhotels_Practica.model.HubRequest;
-import com.moonhotels.Moonhotels_Practica.model.HubResponse;
-import com.moonhotels.Moonhotels_Practica.service.SearchService;
+import com.moonhotels.moonhotels_practica.model.HubRequest;
+import com.moonhotels.moonhotels_practica.model.HubResponse;
+import com.moonhotels.moonhotels_practica.service.SearchService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

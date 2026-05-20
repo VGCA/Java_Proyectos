@@ -1,11 +1,13 @@
-package com.moonhotels.Moonhotels_Practica.adapter;
+package com.moonhotels.moonhotels_practica.adapter;
 
-import com.moonhotels.Moonhotels_Practica.model.HotelLegsRequest;
-import com.moonhotels.Moonhotels_Practica.model.HubRequest;
+import com.moonhotels.moonhotels_practica.model.HotelLegsRequest;
+import com.moonhotels.moonhotels_practica.model.HubRequest;
 
 import java.time.temporal.ChronoUnit;
 
 public class HotelLegsAdapter {
+
+    private HotelLegsAdapter(){}
 
     public static HotelLegsRequest convertToHotelLegs(HubRequest request) {
         HotelLegsRequest hotelLegsRequest = new HotelLegsRequest();
@@ -17,4 +19,6 @@ public class HotelLegsAdapter {
         hotelLegsRequest.setCurrency(request.getCurrency());
         return hotelLegsRequest;
     }
+
+
 }

@@ -1,8 +1,8 @@
-package com.moonhotels.Moonhotels_Practica.adapterTest;
+package com.moonhotels.moonhotels_practica.adapterTest;
 
-import com.moonhotels.Moonhotels_Practica.adapter.HotelLegsAdapter;
-import com.moonhotels.Moonhotels_Practica.model.HotelLegsRequest;
-import com.moonhotels.Moonhotels_Practica.model.HubRequest;
+import com.moonhotels.moonhotels_practica.adapter.HotelLegsAdapter;
+import com.moonhotels.moonhotels_practica.model.HotelLegsRequest;
+import com.moonhotels.moonhotels_practica.model.HubRequest;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;

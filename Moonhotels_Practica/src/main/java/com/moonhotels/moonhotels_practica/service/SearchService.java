@@ -1,10 +1,10 @@
-package com.moonhotels.Moonhotels_Practica.service;
+package com.moonhotels.moonhotels_practica.service;
 
-import com.moonhotels.Moonhotels_Practica.adapter.HotelLegsAdapter;
-import com.moonhotels.Moonhotels_Practica.interfaces.IHotelLegsAPI;
-import com.moonhotels.Moonhotels_Practica.model.HotelLegsResponse;
-import com.moonhotels.Moonhotels_Practica.model.HubRequest;
-import com.moonhotels.Moonhotels_Practica.model.HubResponse;
+import com.moonhotels.moonhotels_practica.adapter.HotelLegsAdapter;
+import com.moonhotels.moonhotels_practica.interfaces.IHotelLegsAPI;
+import com.moonhotels.moonhotels_practica.model.HotelLegsResponse;
+import com.moonhotels.moonhotels_practica.model.HubRequest;
+import com.moonhotels.moonhotels_practica.model.HubResponse;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
