@@ -1,4 +1,4 @@
-package com.bosonit.UploadSpring.controlador;
+package com.bosonit.uploadspring.controlador;
 
 import java.io.File;
 
@@ -19,7 +19,7 @@ public class Controlador {
     }
 
     @PostMapping("/subir")
-    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file){
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file){
         String nombreFichero=file.getOriginalFilename();
 
         try{
