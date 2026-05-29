@@ -12,15 +12,19 @@ import com.bosonit.csvh2.repositorio.TutorialRepository;
 
 @Service
 public class CSVService {
-    @Autowired
-    TutorialRepository repository;
 
-    public void save(MultipartFile file) {
+    private final TutorialRepository repository;
+
+    public CSVService(TutorialRepository repository) {
+        this.repository = repository;
+    }
+
+    public void save(MultipartFile file) throws IOException {
         try {
             List<Tutorial> tutorials = CSVHelper.csvToTutorials(file.getInputStream());
             repository.saveAll(tutorials);
         } catch (IOException e) {
-            throw new RuntimeException("fail to store csv data: " + e.getMessage());
+            throw new IOException("fail to store csv data: " + e.getMessage());
         }
     }
 

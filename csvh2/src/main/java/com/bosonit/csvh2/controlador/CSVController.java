@@ -22,8 +22,12 @@ import com.bosonit.csvh2.servicio.CSVService;
 @Controller
 @RequestMapping("/api/csv")
 public class CSVController {
-    @Autowired
-    CSVService fileService;
+
+    private final CSVService fileService;
+
+    public CSVController(CSVService fileService) {
+        this.fileService = fileService;
+    }
 
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
