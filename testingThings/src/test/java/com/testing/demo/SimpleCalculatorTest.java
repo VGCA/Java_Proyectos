@@ -25,13 +25,13 @@ class SimpleCalculatorTest {
 
     @Test
     void add() {
-        //when(simpleCalculator.add(2, 3)).thenReturn(5);
+
         assertEquals(5, simpleCalculator.add(2, 3));
     }
 
     @Test
     void quit() {
-        //when(simpleCalculator.quit(25, 5)).thenReturn(20);
+
         assertEquals(20, simpleCalculator.quit(25, 5));
     }
 

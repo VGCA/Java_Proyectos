@@ -1,10 +1,12 @@
 
-package Code;
+package code;
 import processing.core.*;
+
+import static java.lang.Math.random;
 
 public class Apple extends PApplet{
     
-    public PVector position = new PVector(0,0);
+    public static final PVector position = new PVector(0,0);
     
     public Apple(){
         

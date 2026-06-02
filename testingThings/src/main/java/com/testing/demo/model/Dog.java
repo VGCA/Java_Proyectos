@@ -12,6 +12,8 @@ public class Dog {
         this.name = name;
     }
 
+    public Dog(){}
+
     public Dog createDog(Dog newDog){
         return newDog;
     }

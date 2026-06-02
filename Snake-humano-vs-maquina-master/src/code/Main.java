@@ -1,4 +1,4 @@
-package Code;
+package code;
 
 import processing.core.*;
 
@@ -10,7 +10,7 @@ public class Main extends PApplet {
         /**
          * Biblioteca que hará las animaciones.
          */
-        PApplet.main(new String[]{Code.Main.class.getName()});
+        PApplet.main(new String[]{code.Main.class.getName()});
     }
 
     int filas = 25;

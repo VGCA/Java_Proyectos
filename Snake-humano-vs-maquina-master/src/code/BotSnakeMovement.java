@@ -1,5 +1,5 @@
 
-package Code;
+package code;
 
 import processing.core.*;
 

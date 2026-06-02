@@ -1,5 +1,5 @@
 
-package Code;
+package code;
 
 public class Dijkstra {
     final int filas = 25;

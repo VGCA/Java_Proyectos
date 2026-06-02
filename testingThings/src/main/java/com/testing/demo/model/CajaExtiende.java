@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class CajaExtiende<Integer extends Dog>{
+public class CajaExtiende<T extends Dog> {
 
-    private Integer datos;
+    private T datos;
 
-    public int howManyLegs(){
+    public int howManyLegs() {
         return datos.getLegs();
     }
 }

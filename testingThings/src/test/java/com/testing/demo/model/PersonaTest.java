@@ -20,11 +20,6 @@ class PersonaTest {
     }
 
     @Test
-    void getDataPersonaTest(){
-        assertEquals(persona,persona);
-    }
-
-    @Test
     void changeDataTest(){
         persona.setNombre("secondNombre");
         assertEquals("secondNombre",persona.getNombre());

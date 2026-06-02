@@ -8,7 +8,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 @Configuration
 public class KafkaConsumerListener {
 
-    private Logger LOGGER= LoggerFactory.getLogger(KafkaConsumerListener.class);
+    private Logger logger = LoggerFactory.getLogger(KafkaConsumerListener.class);
 
     /**
      * Method receiving message from the provider
@@ -16,6 +16,6 @@ public class KafkaConsumerListener {
      */
     @KafkaListener(topics = {"unProgramadorNace-topic"}, groupId = "my-groupd-id")
     public void listener(String message){
-        LOGGER.info("Mensaje recibido: "+message);
+        logger.info("Mensaje recibido: "+message);
     }
 }
