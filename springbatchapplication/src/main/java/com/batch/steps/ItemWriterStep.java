@@ -16,8 +16,11 @@ import java.util.List;
 @Slf4j
 public class ItemWriterStep implements Tasklet{
 
-    @Autowired
-    private PersonService personService;
+    private final PersonService personService;
+
+    public ItemWriterStep(PersonService personService) {
+        this.personService = personService;
+    }
 
     @Override
     @Nullable

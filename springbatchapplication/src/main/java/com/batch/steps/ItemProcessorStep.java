@@ -29,7 +29,7 @@ public class ItemProcessorStep implements Tasklet {
                 .getExecutionContext()
                 .get("personList");
 
-        List<Person> personFinalList = new ArrayList<Person>();
+        List<Person> personFinalList = new ArrayList<>();
         if (personList != null) {
             personFinalList = personList.stream().map(person -> {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");

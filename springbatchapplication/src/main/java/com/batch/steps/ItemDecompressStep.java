@@ -5,7 +5,6 @@ import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.lang.Nullable;
@@ -18,16 +17,21 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 @Slf4j
-public class ItemDecompressStep implements Tasklet{
+public class ItemDecompressStep implements Tasklet {
 
-    @Autowired
-    private ResourceLoader resourceLoader;
+    private final ResourceLoader resourceLoader;
+
+    public ItemDecompressStep(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
+
+    public ItemDecompressStep() {
+    }
 
     @Override
     @Nullable
     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
 
-        log.info("Inicio del paso de decompresióon del archivo");
 
         Resource resource = resourceLoader.getResource("classpath:files/persons.zip");
         String filePath = resource.getFile().getAbsolutePath();
@@ -36,7 +40,7 @@ public class ItemDecompressStep implements Tasklet{
 
         File destDir = new File(resource.getFile().getParent(), "destino");
 
-        if(!destDir.exists()) {
+        if (!destDir.exists()) {
             destDir.mkdir();
         }
 
@@ -66,9 +70,7 @@ public class ItemDecompressStep implements Tasklet{
 
         zipFile.close();
 
-        log.info("Fin del paso de decompresióon del archivo");
-
         return RepeatStatus.FINISHED;
     }
-    
+
 }

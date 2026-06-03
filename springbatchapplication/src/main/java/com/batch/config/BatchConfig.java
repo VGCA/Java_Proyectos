@@ -17,12 +17,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableBatchProcessing
 public class BatchConfig {
-    
-    @Autowired
-    public JobBuilderFactory jobBuilderFactory;
 
-    @Autowired
-    public StepBuilderFactory stepBuilderFactory;
+    public final JobBuilderFactory jobBuilderFactory;
+
+    public final StepBuilderFactory stepBuilderFactory;
+
+    public BatchConfig(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory) {
+        this.jobBuilderFactory = jobBuilderFactory;
+        this.stepBuilderFactory = stepBuilderFactory;
+    }
 
     @Bean
     @JobScope
@@ -40,13 +43,13 @@ public class BatchConfig {
     @JobScope
     public ItemReaderStep itemReaderStep(){
         return new ItemReaderStep();
-    };
+    }
 
     @Bean
     @JobScope
     public ItemWriterStep itemWriterStep(){
         return new ItemWriterStep();
-    };
+    }
 
     @Bean
     public Step descompressFileStep(){

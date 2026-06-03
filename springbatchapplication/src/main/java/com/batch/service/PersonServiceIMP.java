@@ -11,8 +11,11 @@ import com.batch.persistence.PersonDAO;
 @Service
 public class PersonServiceIMP implements PersonService{
 
-    @Autowired
-    private PersonDAO personDAO;
+    private final PersonDAO personDAO;
+
+    public PersonServiceIMP(PersonDAO personDAO) {
+        this.personDAO = personDAO;
+    }
 
     @Override
     public void save(Person person) {

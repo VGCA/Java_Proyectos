@@ -27,14 +27,17 @@ import java.util.Map;
 @RequestMapping("/v1")
 public class BatchController {
 
-    @Autowired
-    private JobLauncher jobLauncher;
+    private final JobLauncher jobLauncher;
 
-    @Autowired
-    private Job job;
+    private final Job job;
+
+    public BatchController(JobLauncher jobLauncher, Job job) {
+        this.jobLauncher = jobLauncher;
+        this.job = job;
+    }
 
     @PostMapping("/uploadFile")
-    public ResponseEntity<?> receiveFile(@RequestParam(name = "file") MultipartFile multipartFile) {
+    public ResponseEntity<Map<String, String>> receiveFile(@RequestParam(name = "file") MultipartFile multipartFile) {
 
         String fileName = multipartFile.getOriginalFilename();
         try {
@@ -43,8 +46,6 @@ public class BatchController {
 
             Files.createDirectories(path.getParent());
             Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-
-            //File archivo = path.toAbsolutePath().toFile();
 
             JobParameters jobParameters = new JobParametersBuilder()
                     .addString("nombre", fileName)

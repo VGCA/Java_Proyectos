@@ -24,8 +24,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ItemReaderStep implements Tasklet {
 
-    @Autowired
-    private ResourceLoader resourceLoader;
+    private final ResourceLoader resourceLoader;
+
+    public ItemReaderStep(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
+
+    public ItemReaderStep(){}
 
     @Override
     @Nullable
