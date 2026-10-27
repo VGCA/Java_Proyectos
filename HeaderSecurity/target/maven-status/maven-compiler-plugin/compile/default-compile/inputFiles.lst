@@ -1,0 +1,13 @@
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\adapter\in\cli\ConsoleReportPrinter.java
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\adapter\in\cli\SecurityHeaderScanner.java
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\adapter\out\http\JdkHttpHeaderFetcher.java
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\application\port\in\ScanUrlUseCase.java
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\application\port\out\HeaderFetcher.java
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\application\port\out\HeaderFetchException.java
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\application\service\ScanService.java
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\domain\model\HeaderFinding.java
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\domain\model\HeaderRule.java
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\domain\model\ResponseHeaders.java
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\domain\model\ScanReport.java
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\domain\model\SecurityHeaderRules.java
+C:\Users\vgcav\Desktop\HeaderSecurity\src\main\java\com\java\pruebas\domain\model\Verdict.java
