@@ -1,4 +1,4 @@
-package com.pruebatecnica.Prueba_Tecnica_TecData;
+package com.pruebatecnica.prueba_tecnica_tecdata;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
