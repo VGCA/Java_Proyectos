@@ -1,4 +1,4 @@
-package com.pruebatecnica.Prueba.tecnica.Senior;
+package com.pruebatecnica.prueba.tecnica.senior;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
