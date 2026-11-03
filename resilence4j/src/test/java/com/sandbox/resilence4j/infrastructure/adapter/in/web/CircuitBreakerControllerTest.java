@@ -1,16 +1,13 @@
-package com.sandbox.resilence4j;
+package com.sandbox.resilence4j.infrastructure.adapter.in.web;
 
-import com.sandbox.resilence4j.controller.CircuitBreakerController;
-import com.sandbox.resilence4j.exceptions.ServiceUnavailableException;
-import com.sandbox.resilence4j.service.SampleService;
+import com.sandbox.resilence4j.application.port.in.CallExternalServiceUseCase;
+import com.sandbox.resilence4j.domain.model.ServiceCallResult;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
@@ -27,34 +24,42 @@ class CircuitBreakerControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private SampleService sampleService;
-
+    private CallExternalServiceUseCase callExternalService;
 
     @Test
     void shouldReturn200WhenServiceSucceeds() throws Exception {
-        given(sampleService.callExternalService())
-                .willReturn("Service call succeeded");
+        given(callExternalService.execute())
+                .willReturn(ServiceCallResult.success("Service call succeeded"));
 
         mockMvc.perform(get("/test"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Service call succeeded"));
     }
 
+    @Test
+    void shouldPrefixMessageWhenResultIsFallback() throws Exception {
+        given(callExternalService.execute())
+                .willReturn(ServiceCallResult.fallback("Service failed"));
+
+        mockMvc.perform(get("/test"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Fallback response: Service failed"));
+    }
 
     @Test
-    void shouldInvokeServiceExactlyOnce() throws Exception {
-        given(sampleService.callExternalService())
-                .willReturn("Service call succeeded");
+    void shouldInvokeUseCaseExactlyOnce() throws Exception {
+        given(callExternalService.execute())
+                .willReturn(ServiceCallResult.success("Service call succeeded"));
 
         mockMvc.perform(get("/test"));
 
-        verify(sampleService, times(1)).callExternalService();
+        verify(callExternalService, times(1)).execute();
     }
 
     @Test
     void shouldReturnPlainTextContentType() throws Exception {
-        given(sampleService.callExternalService())
-                .willReturn("Service call succeeded");
+        given(callExternalService.execute())
+                .willReturn(ServiceCallResult.success("Service call succeeded"));
 
         mockMvc.perform(get("/test"))
                 .andExpect(status().isOk())

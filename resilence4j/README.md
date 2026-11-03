@@ -1,7 +1,22 @@
-# Proyecto generado para práctica de Resilence4J
+# Resilience4j practice project (hexagonal architecture)
 
-Corregido con SonarQube y testeado.
+Run with `mvn spring-boot:run`, then call `curl http://localhost:8080/test`.
 
-## Instrucciones de uso
+## Structure
 
-Primero hacer `mvn spring-boot:run` para correr el programa y luego, con un terminal, introducir `curl http://localhost:8080/test` en el caso de Windows para probar. También mirar el resultado en la consola del IDE.
+```
+com.sandbox.resilence4j
+├── domain                      # business vocabulary, zero dependencies
+│   ├── model/ServiceCallResult
+│   └── exception/ServiceUnavailableException
+├── application                 # use cases + ports, depends only on domain
+│   ├── port/in/CallExternalServiceUseCase     (driving port)
+│   ├── port/out/ExternalServicePort           (driven port)
+│   └── service/CallExternalServiceService     (use-case implementation)
+└── infrastructure              # everything framework/technology related
+    ├── adapter/in/web/CircuitBreakerController      (HTTP -> use case)
+    ├── adapter/out/external/SimulatedExternalServiceAdapter (@CircuitBreaker)
+    └── config/UseCaseConfig                          (wiring)
+```
+
+Dependency rule: `infrastructure -> application -> domain`, never the reverse.
