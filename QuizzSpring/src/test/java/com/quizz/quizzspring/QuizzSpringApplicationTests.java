@@ -3,16 +3,11 @@ package com.quizz.quizzspring;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.logging.Logger;
-
+/** Verifies the whole hexagon is wired (ports, adapters, JPA) against in-memory H2. */
 @SpringBootTest
 class QuizzSpringApplicationTests {
 
-    private Logger logger = Logger.getLogger(QuizzSpringApplicationTests.class.getName());
-
-	@Test
-	void contextLoads() {
-        logger.info("contextLoads running");
-	}
-
+    @Test
+    void contextLoads() {
+    }
 }
