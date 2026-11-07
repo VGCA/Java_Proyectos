@@ -49,3 +49,27 @@ Proyecto SpringBoot que levanta el servidor Eureka en el puerto 8084 de localhos
 	}
 }
 
+## Arquitectura (hexagonal)
+
+ServicioClientes y ServicioPedidos estan organizados en puertos y adaptadores. Las dependencias apuntan siempre hacia el centro:
+
+* dominio: modelo (records inmutables) y excepciones. Sin frameworks.
+* aplicacion: puertos de entrada (casos de uso), puertos de salida (lo que necesita el nucleo) y servicios que implementan los casos de uso.
+* infraestructura: adaptadores REST (entrada), adaptadores de persistencia JPA y cliente Feign (salida) y la configuracion que ensambla los beans.
+
+Las entidades JPA viven solo en infraestructura/adaptador/salida/persistencia y mantienen los mismos nombres de tabla y columna que antes.
+
+## Versiones
+
+* JDK 27 (java.version=27)
+* Spring Boot 4.1.2 y Spring Cloud 2025.1.4 (Boot 4.1 declara soporte oficial hasta JDK 26; si al arrancar con JDK 27 aparece "Unsupported class file major version 71", compilar con maven.compiler.release=26 o esperar a Spring Boot 4.2)
+* Maven wrapper 3.9.11
+* Sin Lombok (el proyecto original no lo usaba)
+
+## Aviso sobre las bases de datos H2
+
+Spring Boot 4 trae H2 2.x, cuyo formato de fichero no es compatible con el de H2 1.4.200 que traia Spring Boot 2.3. Si ya tienes ficheros en C:/H2 creados con la version anterior, borralos (se regeneran solos) o exportalos/importalos con SCRIPT/RUNSCRIPT.
+
+## Tests
+
+* mvn clean test en cada modulo (los tests de contexto usan H2 en memoria y Eureka desactivado, ver src/test/resources/application.properties).
