@@ -1,25 +1,23 @@
-package com.bosonit.crudrelaciones.servicio;
+package com.bosonit.crudrelaciones.application.service;
 
-import com.bosonit.crudrelaciones.interfazservicio.InterfazStudent;
-import com.bosonit.crudrelaciones.modelo.Student;
-import com.bosonit.crudrelaciones.repositorio.Repositorio;
-import org.springframework.stereotype.Service;
+import com.bosonit.crudrelaciones.domain.model.Student;
+import com.bosonit.crudrelaciones.domain.port.in.StudentUseCase;
+import com.bosonit.crudrelaciones.domain.port.out.StudentRepositoryPort;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class ServicioEstudiante implements InterfazStudent {
+public class StudentService implements StudentUseCase {
 
-    private final Repositorio repositorio;
+    private final StudentRepositoryPort repositorio;
 
-    public ServicioEstudiante(Repositorio repositorio) {
+    public StudentService(StudentRepositoryPort repositorio) {
         this.repositorio = repositorio;
     }
 
     @Override
     public List<Student> listarAlumnos() {
-        return (List<Student>)repositorio.findAll();
+        return repositorio.findAll();
     }
 
     @Override
